@@ -45,5 +45,7 @@ namespace chess137.Chess
             chessBoard[6, 6] = new Pawn(6, 6, false);
             chessBoard[6, 7] = new Pawn(6, 7, false);
         }
+
+        public static bool isPinned(Figure figure){
     }
 }

@@ -6,3 +6,11 @@ C:\Users\adamz\source\repos\chess137\chess137\obj\Debug\chess137.csproj.Suggeste
 C:\Users\adamz\source\repos\chess137\chess137\obj\Debug\chess137.csproj.CoreCompileInputs.cache
 C:\Users\adamz\source\repos\chess137\chess137\obj\Debug\chess137.exe
 C:\Users\adamz\source\repos\chess137\chess137\obj\Debug\chess137.pdb
+C:\Users\adam\Desktop\projekty\chess137\chess137\bin\Debug\chess137.exe.config
+C:\Users\adam\Desktop\projekty\chess137\chess137\bin\Debug\chess137.exe
+C:\Users\adam\Desktop\projekty\chess137\chess137\bin\Debug\chess137.pdb
+C:\Users\adam\Desktop\projekty\chess137\chess137\obj\Debug\chess137.csproj.AssemblyReference.cache
+C:\Users\adam\Desktop\projekty\chess137\chess137\obj\Debug\chess137.csproj.SuggestedBindingRedirects.cache
+C:\Users\adam\Desktop\projekty\chess137\chess137\obj\Debug\chess137.csproj.CoreCompileInputs.cache
+C:\Users\adam\Desktop\projekty\chess137\chess137\obj\Debug\chess137.exe
+C:\Users\adam\Desktop\projekty\chess137\chess137\obj\Debug\chess137.pdb

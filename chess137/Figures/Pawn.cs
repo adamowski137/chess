@@ -22,5 +22,19 @@ namespace chess137.Figures
         {
             return firstMove;
         }
+
+       public List<Position> positionsAvailableToMove()
+        {
+            List<Position> positionsAvailableToMove = new List<Position>();
+            if (isFirstMove())
+            {
+                positionsAvailableToMove.Add(new Position(position.x, position.y+2));
+            }
+            if(position.y + 1 < Const.height)
+            {
+                positionsAvailableToMove.Add(new Position(position.x, position.y + 1));
+            }
+            return positionsAvailableToMove;
+        }
     }
 }
