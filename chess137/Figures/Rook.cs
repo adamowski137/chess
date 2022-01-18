@@ -15,5 +15,38 @@ namespace chess137.Figures
             isWhite = isW;
             value = 4;
         }
+
+        public List<Position> positionsAvailableToMove()
+        {
+            List<Position> positionsAvailableToMove = new List<Position>();
+            
+            int i = 1;
+
+            while (position.x + i < Const.width)
+            {
+                positionsAvailableToMove.Add(new Position(position.x + i, position.y));
+                i++;
+            }
+            i = 1;
+            while (position.x - i > 0)
+            {
+                positionsAvailableToMove.Add(new Position(position.x - i, position.y));
+                i++;
+            }
+            i = 1;
+            while (position.y - i > 0)
+            {
+                positionsAvailableToMove.Add(new Position(position.x, position.y - i));
+                i++;
+            }
+            i = 1;
+            while (position.y + i < Const.height)
+            { 
+                positionsAvailableToMove.Add(new Position(position.x, position.y + i));
+                i++;
+            }
+
+            return positionsAvailableToMove;
+        }
     }
 }
