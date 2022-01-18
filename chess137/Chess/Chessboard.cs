@@ -10,6 +10,8 @@ namespace chess137.Chess
      class Chessboard
     {
         public Figure [,] chessBoard = new Figure [Const.height, Const.width];
+        public ssList<Figures> figures;
+        List<King> kings;
         public Chessboard()
         {
             chessBoard[0, 0] = new Rook(0, 0, true);
@@ -44,6 +46,10 @@ namespace chess137.Chess
             chessBoard[6, 5] = new Pawn(6, 5, false);
             chessBoard[6, 6] = new Pawn(6, 6, false);
             chessBoard[6, 7] = new Pawn(6, 7, false);
+        }
+
+        public Position getKingPosition(bool isWhite) {
+            return kings.Find(x => x.getColor() == isWhite).getPosition();
         }
     }
 }

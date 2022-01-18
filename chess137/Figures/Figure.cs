@@ -13,7 +13,6 @@ namespace chess137.Figures
         protected Position position;
         protected bool isWhite;
         protected int value;
-
         public Position getPosition()
         {
             return position;
