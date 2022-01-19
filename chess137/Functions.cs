@@ -13,15 +13,9 @@ namespace chess137
         public static int countValue(Chessboard chessboard)
         {
             int value = 0;
-            for (int i = 0; i < Const.width; i++)
-            {
-                for (int j = 0; j < Const.height; j++)
-                {
-                    if (chessboard.chessBoard[i, j] == null) continue;
-                    if (chessboard.chessBoard[i, j].getColor()) value += chessboard.chessBoard[i, j].getValue();
-                    if (chessboard.chessBoard[i, j].getColor() == false) value -= chessboard.chessBoard[i, j].getValue();
-                }
-            }
+            chessboard.whiteFigures.ForEach(x => value += x.getValue());
+            chessboard.blackFigures.ForEach(x => value -= x.getValue());
+
             return value;
         }
 
@@ -36,19 +30,26 @@ namespace chess137
         }
         public static List<Position> removeIllegalMoves(bool isWhite, Chessboard chessboard, List<Position> availablePositions, Figure figure)
         {
-            List<Position> positions = new List<Position>;
+            List<Position> positions = new List<Position>();
             for (int i = 0; i < availablePositions.Count; i++)
             {
                 Chessboard chessboard1 = alternativeChessboard(figure, availablePositions[i], chessboard);
-                if (isCheck(isWhite, chessboard1, ))
+                if (!isCheck(isWhite, chessboard1, availablePositions[i])) positions.Add(availablePositions[i]);
             }
-
+            return positions;
         }
 
         public static Chessboard alternativeChessboard(Figure figure, Position position, Chessboard chessboard)
         {
             Chessboard newChesboard = chessboard;
-            newChesboard.figures.Find(x => x == figure).position = position;
+            if (figure.getColor())
+            {
+                newChesboard.whiteFigures.SingleOrDefault(x => x == figure).setPosition(position);
+            }
+            if (!figure.getColor())
+            {
+                newChesboard.blackFigures.SingleOrDefault(x => x == figure).setPosition(position);
+            }
             return newChesboard;
         }
     }

@@ -13,6 +13,7 @@ namespace chess137
             Chessboard chessboard = new Chessboard();
             int value = Functions.countValue(chessboard);
             Console.WriteLine(value);
+            while (true) ;
         }
     }
 }

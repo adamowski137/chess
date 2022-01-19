@@ -25,5 +25,10 @@ namespace chess137.Figures
         {
             return value;
         }
+
+        public void setPosition(Position position)
+        {
+            this.position = position;
+        }
     }
 }

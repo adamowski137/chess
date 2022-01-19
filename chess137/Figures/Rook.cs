@@ -13,7 +13,7 @@ namespace chess137.Figures
         {
             position = new Position(posX, posY);
             isWhite = isW;
-            value = 4;
+            value = 5;
         }
 
         public List<Position> positionsAvailableToMove()
