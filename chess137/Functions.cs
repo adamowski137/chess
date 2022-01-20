@@ -52,6 +52,24 @@ namespace chess137
             }
             return newChesboard;
         }
+        public static void removeOccupiedMoves(List<Position> positions, Figure figure, List<Figure> whiteFigures, List<Figure> blackFigures)
+        {
+            if (figure.getName() == "pawn")
+            { 
+                for (int i = 0; i < whiteFigures.Count; i++)
+                {
+                    Position pos = positions.Find(x => x == whiteFigures[i].getPosition());
+                    if (pos != null) positions.Remove(pos);
+                }
+                for (int i = 0; i < blackFigures.Count; i++)
+                {
+                    Position pos = positions.Find(x => x == blackFigures[i].getPosition());
+                    if (pos != null) positions.Remove(pos);
+                }
+            }
+
+            if (figure.getName() == "bishop")
+        }
     }
 
 }

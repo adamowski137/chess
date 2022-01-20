@@ -10,6 +10,5 @@ namespace chess137
     {
         public const int width = 8;
         public const int height = 8;
-        
     }
 }
