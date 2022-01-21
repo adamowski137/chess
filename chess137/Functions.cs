@@ -54,7 +54,7 @@ namespace chess137
         }
         public static void removeOccupiedMoves(List<Position> positions, Figure figure, List<Figure> whiteFigures, List<Figure> blackFigures)
         {
-            if (figure.getName() == "pawn")
+            if (figure.getName() == Const.pawnName)
             { 
                 for (int i = 0; i < whiteFigures.Count; i++)
                 {
@@ -68,7 +68,170 @@ namespace chess137
                 }
             }
 
-            if (figure.getName() == "bishop")
+            if (figure.getName() == Const.knightName)
+            {
+                for (int i = 0; i < whiteFigures.Count; i++)
+                {
+                    Position pos = positions.Find(x => x == whiteFigures[i].getPosition());
+                    if (pos != null) positions.Remove(pos);
+                }
+            }
+
+            if (figure.getName() == Const.kingName)
+            {
+                for (int i = 0; i < whiteFigures.Count; i++)
+                {
+                    Position pos = positions.Find(x => x == whiteFigures[i].getPosition());
+                    if(pos != null) positions.Remove(pos);
+                }
+            }
+
+            if (figure.getName() == Const.rookName)
+            {
+                for (int i = 0; i < whiteFigures.Count; i++)
+                {
+                      Position pos = positions.Find(x => x ==whiteFigures[i].getPosition());
+                        if(pos != null)
+                    {
+                        positions.Remove(pos);
+                        if (pos.x == figure.getPosition().x && pos.y < figure.getPosition().y)
+                        {
+                            positions.RemoveAll(x => x.x == figure.getPosition().x && x.y > pos.y);
+                        }
+                        if (pos.x == figure.getPosition().x && pos.y > figure.getPosition().y)
+                        {
+                            positions.RemoveAll(x => x.x == figure.getPosition().x && x.y < pos.y);
+                        }
+                        if (pos.x < figure.getPosition().x && pos.y == figure.getPosition().y)
+                        {
+                            positions.RemoveAll(x => x.x > pos.x && x.y == figure.getPosition().y);
+                        }
+                        if (pos.x > figure.getPosition().x && pos.y == figure.getPosition().y)
+                        {
+                            positions.RemoveAll(x => x.x < pos.x && x.y == figure.getPosition().y);
+                        }
+                    }
+                }
+                for (int i = 0; i < blackFigures.Count; i++)
+                {
+                    Position pos = positions.Find(x => x == blackFigures[i].getPosition());
+                    if (pos != null)
+                    {
+                        positions.Remove(pos);
+                        if (pos.x == figure.getPosition().x && pos.y < figure.getPosition().y)
+                        {
+                            positions.RemoveAll(x => x.x == figure.getPosition().x && x.y < pos.y);
+                        }
+                        if (pos.x == figure.getPosition().x && pos.y > figure.getPosition().y)
+                        {
+                            positions.RemoveAll(x => x.x == figure.getPosition().x && x.y > pos.y);
+                        }
+                        if (pos.x < figure.getPosition().x && pos.y == figure.getPosition().y)
+                        {
+                            positions.RemoveAll(x => x.x < pos.x && x.y == figure.getPosition().y);
+                        }
+                        if (pos.x > figure.getPosition().x && pos.y == figure.getPosition().y)
+                        {
+                            positions.RemoveAll(x => x.x > pos.x && x.y == figure.getPosition().y);
+                        }
+                    }
+                }
+            }
+
+            if(figure.getName() == Const.bishopName)
+            {
+                for(int i = 0; i < whiteFigures.Count; i++)
+                {
+                    Position pos = positions.Find(x => x == whiteFigures[i].getPosition());
+                    if (pos != null)
+                    {
+                        positions.Remove(pos);
+                        if(pos.x > figure.getPosition().x && pos.y > figure.getPosition().y)
+                        {
+                            positions.RemoveAll(x => x.x > pos.x && x.y > pos.y);
+                        }
+                        if (pos.x > figure.getPosition().x && pos.y < figure.getPosition().y)
+                        {
+                            positions.RemoveAll(x => x.x > pos.x && x.y < pos.y);
+                        }
+                        if (pos.x < figure.getPosition().x && pos.y > figure.getPosition().y)
+                        {
+                            positions.RemoveAll(x => x.x < pos.x && x.y > pos.y);
+                        }
+                        if (pos.x < figure.getPosition().x && pos.y < figure.getPosition().y)
+                        {
+                            positions.RemoveAll(x => x.x < pos.x && x.y < pos.y);
+                        }
+                    }
+                }
+                for (int i = 0; i < blackFigures.Count; i++)
+                {
+                    Position pos = positions.Find(x => x == blackFigures[i].getPosition());
+                    if (pos != null)
+                    {
+                        if (pos.x > figure.getPosition().x && pos.y > figure.getPosition().y)
+                        {
+                            positions.RemoveAll(x => x.x > pos.x && x.y > pos.y);
+                        }
+                        if (pos.x > figure.getPosition().x && pos.y < figure.getPosition().y)
+                        {
+                            positions.RemoveAll(x => x.x > pos.x && x.y < pos.y);
+                        }
+                        if (pos.x < figure.getPosition().x && pos.y > figure.getPosition().y)
+                        {
+                            positions.RemoveAll(x => x.x < pos.x && x.y > pos.y);
+                        }
+                        if (pos.x < figure.getPosition().x && pos.y < figure.getPosition().y)
+                        {
+                            positions.RemoveAll(x => x.x < pos.x && x.y < pos.y);
+                        }
+                    }
+                }
+            }
+            if (figure.getName() == Const.queenName)
+            {
+                for (int i = 0; i < whiteFigures.Count; i++)
+                {
+                    Position pos = positions.Find(x => x == whiteFigures[i].getPosition());
+                    if (pos != null)
+                    {
+                        positions.Remove(pos);
+                        if (pos.x == figure.getPosition().x && pos.y < figure.getPosition().y)
+                        {
+                            positions.RemoveAll(x => x.x == figure.getPosition().x && x.y > pos.y);
+                        }
+                        if (pos.x == figure.getPosition().x && pos.y > figure.getPosition().y)
+                        {
+                            positions.RemoveAll(x => x.x == figure.getPosition().x && x.y < pos.y);
+                        }
+                        if (pos.x < figure.getPosition().x && pos.y == figure.getPosition().y)
+                        {
+                            positions.RemoveAll(x => x.x > pos.x && x.y == figure.getPosition().y);
+                        }
+                        if (pos.x > figure.getPosition().x && pos.y == figure.getPosition().y)
+                        {
+                            positions.RemoveAll(x => x.x < pos.x && x.y == figure.getPosition().y);
+                        }
+                        if (pos.x > figure.getPosition().x && pos.y > figure.getPosition().y)
+                        {
+                            positions.RemoveAll(x => x.x > pos.x && x.y > pos.y);
+                        }
+                        if (pos.x > figure.getPosition().x && pos.y < figure.getPosition().y)
+                        {
+                            positions.RemoveAll(x => x.x > pos.x && x.y < pos.y);
+                        }
+                        if (pos.x < figure.getPosition().x && pos.y > figure.getPosition().y)
+                        {
+                            positions.RemoveAll(x => x.x < pos.x && x.y > pos.y);
+                        }
+                        if (pos.x < figure.getPosition().x && pos.y < figure.getPosition().y)
+                        {
+                            positions.RemoveAll(x => x.x < pos.x && x.y < pos.y);
+                        }
+                    }
+                }
+
+            }
         }
     }
 
