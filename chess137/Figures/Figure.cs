@@ -13,6 +13,7 @@ namespace chess137.Figures
         protected Position position;
         protected bool isWhite;
         protected int value;
+        protected string name;
         public Position getPosition()
         {
             return position;
@@ -29,6 +30,11 @@ namespace chess137.Figures
         public void setPosition(Position position)
         {
             this.position = position;
+        }
+
+        public string getName()
+        {
+            return name;
         }
     }
 }

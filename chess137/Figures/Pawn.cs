@@ -16,6 +16,7 @@ namespace chess137.Figures
             firstMove = true;
             isWhite = isW;
             value = 1;
+            name = Const.pawnName;
         }
 
         public bool isFirstMove()

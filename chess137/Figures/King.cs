@@ -13,6 +13,7 @@ namespace chess137.Figures
         {
             position = new Position(posX, posY);
             isWhite = isW;
+            name = Const.kingName;
         }
 
         public List <Position> positionsAvailableToMove()

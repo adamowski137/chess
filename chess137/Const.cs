@@ -10,5 +10,12 @@ namespace chess137
     {
         public const int width = 8;
         public const int height = 8;
+
+        public const string knightName = "knight";
+        public const string kingName = "king";
+        public const string bishopName = "bishop";
+        public const string rookName = "rook";
+        public const string pawnName = "pawn";
+        public const string queenName = "queen";
     }
 }

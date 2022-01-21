@@ -14,6 +14,7 @@ namespace chess137.Figures
             position = new Position(posX, posY);
             isWhite = isW;
             value = 9;
+            name = Const.queenName;
         }
 
         public List<Position> positionsAvailableToMove()
