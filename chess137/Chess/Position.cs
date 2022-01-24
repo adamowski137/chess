@@ -10,11 +10,13 @@ namespace chess137.Chess
     {
         public int x;
         public int y;
+        public bool beat;
 
         public Position (int _x, int _y)
         {
             x = _x;
             y = _y;
+            beat = false;
         }
     }
 }

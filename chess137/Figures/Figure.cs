@@ -31,6 +31,10 @@ namespace chess137.Figures
         {
             this.position = position;
         }
+        public void setColor(bool isW)
+        {
+            this.isWhite = isW;
+        }
 
         public string getName()
         {

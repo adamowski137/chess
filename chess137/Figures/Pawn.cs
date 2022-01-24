@@ -27,13 +27,44 @@ namespace chess137.Figures
        public List<Position> positionsAvailableToMove()
         {
             List<Position> positionsAvailableToMove = new List<Position>();
-            if (isFirstMove())
+            if (isWhite)
             {
-                positionsAvailableToMove.Add(new Position(position.x, position.y+2));
+                if (isFirstMove())
+                {
+                    positionsAvailableToMove.Add(new Position(position.x, position.y + 2));
+                }
+                if (position.y + 1 < Const.height)
+                {
+                    positionsAvailableToMove.Add(new Position(position.x, position.y + 1));
+                }
+                if (position.y + 1 < Const.height && position.x + 1 < Const.width)
+                {
+                    positionsAvailableToMove.Add(new Position(position.x + 1, position.y + 1));
+                }
+                if (position.y + 1 < Const.height && position.x - 1 > 0)
+                {
+                    positionsAvailableToMove.Add(new Position(position.x - 1, position.y + 1));
+                }
             }
-            if(position.y + 1 < Const.height)
+
+            else
             {
-                positionsAvailableToMove.Add(new Position(position.x, position.y + 1));
+                if (isFirstMove())
+                {
+                    positionsAvailableToMove.Add(new Position(position.x, position.y - 2));
+                }
+                if (position.y - 1 > 0)
+                {
+                    positionsAvailableToMove.Add(new Position(position.x, position.y - 1));
+                }
+                if (position.y - 1 > 0 && position.x + 1 < Const.width)
+                {
+                    positionsAvailableToMove.Add(new Position(position.x + 1, position.y - 1));
+                }
+                if (position.y - 1 > 0 && position.x - 1 > 0)
+                {
+                    positionsAvailableToMove.Add(new Position(position.x - 1, position.y - 1));
+                }
             }
             return positionsAvailableToMove;
         }

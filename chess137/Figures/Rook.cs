@@ -9,12 +9,23 @@ namespace chess137.Figures
 {
     internal class Rook : Figure
     {
+        private bool ableTocastle;
         public Rook(int posX, int posY, bool isW)
         {
             position = new Position(posX, posY);
             isWhite = isW;
             value = 5;
             name = Const.rookName;
+            ableTocastle = true;
+        }
+        public void setUnableToCastle()
+        {
+            ableTocastle = false;
+        }
+
+        public bool isAbleToCastle()
+        {
+            return ableTocastle;
         }
 
         public List<Position> positionsAvailableToMove()
