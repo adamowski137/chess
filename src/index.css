@@ -1,13 +1,89 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.game{
+    width: 80vh;
+    height: 80vh;
+    background-color: indigo;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.game-board{
+    height: 75vh;
+    width: 75vh;
+    left: 3vh;
+    top: 3vh;
+    background-color: hotpink;
+    position: absolute;
+}
+.board-row{
+    width: 70vh;
+    height: 9vh;
+    position: relative;
+    margin: auto;
+    flex-direction: row;
+    top: 1.5vh;
+    background-color: black;
+    align-self: center;
+    overflow: hidden;
+}
+.chess-tile{
+    position: relative;
+    width: 12.5%;
+    height: 9vh;
+    flex-direction: row;
+    float: left;
+}
+.white{
+    background-color: white;
+}
+.black{
+    background-color: #008000;
+}
+.figure{
+    height: 40px;
+    width: 40px;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: center;
+    left: 15%;
+    top: 15%;
+}
+.selected{
+    background-color: black;
+}
+
+.black-pawn{
+    background-image:url("figures/black-pawn.png");
+}
+.black-knight{
+    background-image: url("figures/black-knight.png");
+}
+.black-rook{
+    background-image: url("figures/black-rook.png");
+}
+.black-bishop{
+    background-image: url("figures/black-bishop.png");
+}
+.black-king{
+    background-image: url("figures/black-king.png");
+}
+.black-queen{
+    background-image: url("figures/black-queen.png");
+}
+
+.white-pawn{
+    background-image:url("figures/white-pawn.png");
+}
+.white-knight{
+    background-image: url("figures/white-knight.png");
+}
+.white-rook{
+    background-image: url("figures/white-rook.png");
+}
+.white-bishop{
+    background-image: url("figures/white-bishop.png");
+}
+.white-king{
+    background-image: url("figures/white-king.png");
+}
+.white-queen{
+    background-image: url("figures/white-queen.png");
 }
