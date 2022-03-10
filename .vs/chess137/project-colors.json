@@ -5,7 +5,12 @@
       "ProjectGuid": "a2cac241-da95-4d0a-b7c9-86ed9203936a",
       "DisplayName": "chess137",
       "ColorIndex": 0
+    },
+    "88e62973-c727-42fc-a2a1-eff8efe854ac": {
+      "ProjectGuid": "88e62973-c727-42fc-a2a1-eff8efe854ac",
+      "DisplayName": "WebApplication1",
+      "ColorIndex": 1
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 2
 }
