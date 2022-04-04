@@ -26,7 +26,7 @@ var highlitedTiles = [[]];
 function StartGame(){
         const [Org, fetchOrg] = useState([])
         const getData = () => {
-          fetch('http://localhost:44384/game/start')
+          fetch('http://localhost:5257/game')
             .then((res) => res.json())
             .then((res) => {
               fetchOrg(res)
@@ -36,9 +36,10 @@ function StartGame(){
         useEffect(() => {
           getData()
         }, [])
-        console.log(Org);
+        console.log(Org.blackFigures);
         return (Org);
-}
+    // return figures;
+    }
 
 function sendMove(figure, move){
     return true;
@@ -372,14 +373,9 @@ function ChessRow(props){
 }
 
 function Chessboard(){
-   const [move, setMove] = useState(0)
-
-   const handleClick = () => {
-    setMove(move+1);
-   }
-    return (
+   const [move, setMove] = useState(StartGame());
+   return (
         <div>
-            {StartGame()}
             <ChessRow className="board-row" props="0" />
             <ChessRow className="board-row" props="1" />
             <ChessRow className="board-row" props="2" />
@@ -388,7 +384,6 @@ function Chessboard(){
             <ChessRow className="board-row" props="5" />
             <ChessRow className="board-row" props="6" />
             <ChessRow className="board-row" props="7" />
-        <button onClick={handleClick}></button>
         </div>
     );
 }
