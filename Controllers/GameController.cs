@@ -9,9 +9,9 @@ namespace ChessApi.Controllers
     public class GameController : ControllerBase
     {
         [HttpGet]
-        public ChessGame Get()
+        public FiguresView Get()
         { 
-            return GameConverter.getChessGame(Game.getChessboard());
+            return GameConverter.getGame(Game.getChessboard());
         }
 
         [HttpGet("start")]

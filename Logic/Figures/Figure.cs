@@ -47,5 +47,6 @@ namespace chess137.Figures
         {
             return Id;
         }
+        public virtual List<Position> positionsAvailableToMove() { return null; }
     }
 }

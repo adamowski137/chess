@@ -1,5 +1,11 @@
 {
   "Version": 1,
-  "ProjectMap": {},
-  "NextColorIndex": 0
+  "ProjectMap": {
+    "cc80940f-d717-463e-be0e-b78f39cdcbdf": {
+      "ProjectGuid": "cc80940f-d717-463e-be0e-b78f39cdcbdf",
+      "DisplayName": "ChessApi",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
 }

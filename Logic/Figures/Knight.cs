@@ -18,7 +18,7 @@ namespace chess137.Figures
             name = Const.knightName;
             Id = id;
         }
-        List <Position> positionsAvailableToMove()
+        public override List<Position> positionsAvailableToMove()
         {
             List<Position> availableToMove = new List<Position>();
             int posX, posY;
