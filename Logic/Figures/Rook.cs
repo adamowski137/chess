@@ -29,7 +29,7 @@ namespace chess137.Figures
             return ableTocastle;
         }
 
-        public List<Position> positionsAvailableToMove()
+        public override List<Position> positionsAvailableToMove()
         {
             List<Position> positionsAvailableToMove = new List<Position>();
             

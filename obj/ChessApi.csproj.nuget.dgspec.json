@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\adam\\Desktop\\projekty\\ChessApi\\ChessApi.csproj": {}
+    "C:\\Users\\adamz\\OneDrive\\Pulpit\\chess137\\ChessApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\adam\\Desktop\\projekty\\ChessApi\\ChessApi.csproj": {
+    "C:\\Users\\adamz\\OneDrive\\Pulpit\\chess137\\ChessApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\adam\\Desktop\\projekty\\ChessApi\\ChessApi.csproj",
+        "projectUniqueName": "C:\\Users\\adamz\\OneDrive\\Pulpit\\chess137\\ChessApi.csproj",
         "projectName": "ChessApi",
-        "projectPath": "C:\\Users\\adam\\Desktop\\projekty\\ChessApi\\ChessApi.csproj",
-        "packagesPath": "C:\\Users\\adam\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\adam\\Desktop\\projekty\\ChessApi\\obj\\",
+        "projectPath": "C:\\Users\\adamz\\OneDrive\\Pulpit\\chess137\\ChessApi.csproj",
+        "packagesPath": "C:\\Users\\adamz\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\adamz\\OneDrive\\Pulpit\\chess137\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\adam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\adamz\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -57,7 +57,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

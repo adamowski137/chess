@@ -4,7 +4,7 @@ namespace ChessApi
 {
     public class Game
     {
-        private static Chessboard? chessboard;
+        private static Chessboard? chessboard =new Chessboard();
 
         public static Chessboard getChessboard()
         {

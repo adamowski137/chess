@@ -25,7 +25,7 @@ namespace chess137.Figures
             return firstMove;
         }
 
-       public List<Position> positionsAvailableToMove()
+       public override List<Position> positionsAvailableToMove()
         {
             List<Position> positionsAvailableToMove = new List<Position>();
             if (isWhite)
