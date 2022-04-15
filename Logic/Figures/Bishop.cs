@@ -18,6 +18,7 @@ namespace chess137.Figures
             value = 3;
             name = Const.bishopName;
             Id = id;
+            moves = positionsAvailableToMove();
         }
         public override List<Position> positionsAvailableToMove()
         {
@@ -29,6 +30,7 @@ namespace chess137.Figures
             {
                 posY--;
                 posX--;
+                if(posX >= 0 && posY >= 0)
                 availableToMove.Add (new Position (posX, posY));
             }
             posX = position.x;
@@ -37,6 +39,7 @@ namespace chess137.Figures
             {
                 posY++;
                 posX--;
+                if (posX >= 0 && posY < Const.height)
                 availableToMove.Add(new Position (posX, posY));
             }
             posX = position.x;
@@ -45,6 +48,7 @@ namespace chess137.Figures
             {
                 posX++;
                 posY--;
+                if(posX < Const.width && posY >= 0)
                 availableToMove.Add(new Position(posX, posY));
             }
             posX = position.x;
@@ -53,6 +57,7 @@ namespace chess137.Figures
             {
                 posY++;
                 posX++;
+                if(posX < Const.width && posY < Const.height)
                 availableToMove.Add(new Position(posX, posY));
             }
             return availableToMove;

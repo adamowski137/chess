@@ -1,14 +1,15 @@
 ﻿using chess137.Chess;
+using chess137;
 
 namespace ChessApi
 {
     public class Game
     {
-        private static Chessboard? chessboard =new Chessboard();
+        private static Chessboard? chessboard = new Chessboard();
 
         public static Chessboard getChessboard()
         {
-            return chessboard!;
+                      return chessboard!;
         }
 
         public static void setChessboard(Chessboard board)

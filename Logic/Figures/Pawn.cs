@@ -18,6 +18,7 @@ namespace chess137.Figures
             value = 1;
             name = Const.pawnName;
             Id = id;
+            moves = positionsAvailableToMove();
         }
 
         public bool isFirstMove()
@@ -32,19 +33,19 @@ namespace chess137.Figures
             {
                 if (isFirstMove())
                 {
-                    positionsAvailableToMove.Add(new Position(position!.x, position.y + 2));
+                    positionsAvailableToMove.Add(new Position(position!.x + 2, position.y));
                 }
-                if (position!.y + 1 < Const.height)
+                if (position!.x + 1 < Const.height)
                 {
-                    positionsAvailableToMove.Add(new Position(position.x, position.y + 1));
+                    positionsAvailableToMove.Add(new Position(position.x + 1, position.y));
                 }
                 if (position.y + 1 < Const.height && position.x + 1 < Const.width)
                 {
                     positionsAvailableToMove.Add(new Position(position.x + 1, position.y + 1));
                 }
-                if (position.y + 1 < Const.height && position.x - 1 > 0)
+                if (position.x + 1 < Const.height && position.y - 1 >= 0)
                 {
-                    positionsAvailableToMove.Add(new Position(position.x - 1, position.y + 1));
+                    positionsAvailableToMove.Add(new Position(position.x + 1, position.y - 1));
                 }
             }
 
@@ -52,17 +53,17 @@ namespace chess137.Figures
             {
                 if (isFirstMove())
                 {
-                    positionsAvailableToMove.Add(new Position(position!.x, position.y - 2));
+                    positionsAvailableToMove.Add(new Position(position!.x - 2, position.y));
                 }
-                if (position!.y - 1 > 0)
+                if (position!.x - 1 >= 0)
                 {
-                    positionsAvailableToMove.Add(new Position(position.x, position.y - 1));
+                    positionsAvailableToMove.Add(new Position(position.x - 1, position.y));
                 }
-                if (position.y - 1 > 0 && position.x + 1 < Const.width)
+                if (position.x - 1 >= 0 && position.y + 1 < Const.width)
                 {
-                    positionsAvailableToMove.Add(new Position(position.x + 1, position.y - 1));
+                    positionsAvailableToMove.Add(new Position(position.x - 1, position.y + 1));
                 }
-                if (position.y - 1 > 0 && position.x - 1 > 0)
+                if (position.y - 1 >= 0 && position.x - 1 >= 0)
                 {
                     positionsAvailableToMove.Add(new Position(position.x - 1, position.y - 1));
                 }

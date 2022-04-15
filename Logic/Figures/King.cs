@@ -17,6 +17,7 @@ namespace chess137.Figures
             name = Const.kingName;
             ableTocastle = false;
             Id = id;
+            moves = positionsAvailableToMove();
         }
 
         public void setUnableToCastle()

@@ -18,6 +18,7 @@ namespace chess137.Figures
             name = Const.rookName;
             ableTocastle = true;
             Id = id;
+            moves = positionsAvailableToMove();
         }
         public void setUnableToCastle()
         {
@@ -41,13 +42,13 @@ namespace chess137.Figures
                 i++;
             }
             i = 1;
-            while (position.x - i > 0)
+            while (position.x - i >= 0)
             {
                 positionsAvailableToMove.Add(new Position(position.x - i, position.y));
                 i++;
             }
             i = 1;
-            while (position.y - i > 0)
+            while (position.y - i >= 0)
             {
                 positionsAvailableToMove.Add(new Position(position.x, position.y - i));
                 i++;
