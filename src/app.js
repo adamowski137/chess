@@ -23,6 +23,16 @@ var selectedFigure = null;
 var selectedPos = null;
 var highlitedTiles = [[]];
 
+function toArray(a){
+    // console.log(a);
+    var b = []
+    for (var i = 0; i < a.length; i++){
+        b.push([a[i].xPos, a[i].yPos])
+        // console.log(a)
+    }
+    return b;
+}
+
 function StartGame(){
         const [Org, fetchOrg] = useState([])
         const getData = () => {
@@ -36,14 +46,38 @@ function StartGame(){
         useEffect(() => {
           getData()
         }, [])
-        console.log(Org.blackFigures);
-        return (Org);
+        if (Org.figures !== undefined){
+            console.log(figures[0].available_moves)
+            figures = [];
+            // console.log(Org.figures);
+            Array(Org.figures)[0].forEach(x => figures.push(new figure(x.name, x.color, [x.xPos, x.yPos],toArray(x.availablePos))));
+            console.log(figures[0].available_moves)
+            return (figures);
+            
+        }
+        return [];
     // return figures;
     }
 
-function sendMove(figure, move){
-    return true;
+function sendMove(pos, move){
+    console.log(move);
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            figureX: pos[0],
+            figureY: pos[1],
+            moveX: move[0],
+            moveY: move[1]
+        })
+    };
+    const getData = () => {
+        fetch('http://localhost:4000/api/declaration_add/', requestOptions)
+            .then(response => response.json())
+    }
+    getData()
 }
+
 
 
 function highlight(moves){
@@ -373,7 +407,12 @@ function ChessRow(props){
 }
 
 function Chessboard(){
-   const [move, setMove] = useState(StartGame());
+    const [move, setMove] = useState([]);
+    const res = StartGame();
+    const handleClick = () => {
+       setMove(res);
+    }
+
    return (
         <div>
             <ChessRow className="board-row" props="0" />
@@ -384,6 +423,7 @@ function Chessboard(){
             <ChessRow className="board-row" props="5" />
             <ChessRow className="board-row" props="6" />
             <ChessRow className="board-row" props="7" />
+            <button onClick={handleClick}></button>
         </div>
     );
 }
