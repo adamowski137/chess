@@ -1,11 +1,9 @@
-﻿using chess137.Chess;
+﻿using chess137.Figures;
 
 namespace ChessApi
 {
     public class ChessGame
     {
-        public Array? BlackFigures { get; set; }
-        public Array? WhiteFigures { get; set; }
-        public Position x { get; set; }
+        public  List <FiguresView>? Figures { get; set; }
     }
 }

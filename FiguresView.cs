@@ -1,12 +1,13 @@
-﻿using System.Collections;
+﻿using chess137.Chess;
 
 namespace ChessApi
 {
     public class FiguresView
     {
-        public int x { get; set; }
-        public int y { get; set; }
-        public string color { get; set; }
-        public Array? availablePos { get; set; }
+        public int XPos { get; set; }
+        public int YPos { get; set; }
+        public string? Color { get; set; }
+        public string Name { get; set; }
+        public List <PositionView>? AvailablePos { get; set; }
     }
 }

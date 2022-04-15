@@ -18,12 +18,5 @@ namespace chess137.Chess
             y = _y;
             beat = false;
         }
-        public Array toArray()
-        {
-            Array res = Array.CreateInstance(Type.GetType("int"), 2);
-            res.SetValue(x, 0);
-            res.SetValue(y, 1);
-            return res;
-        }
     }
 }

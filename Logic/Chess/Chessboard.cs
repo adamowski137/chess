@@ -15,8 +15,8 @@ namespace chess137.Chess
         public List<Figure> blackFigures = new List<Figure>();
         public Figure? selectedFigure;
 
-        public List <Position>? whitePositions;
-        public List <Position>? blackPositions;
+        public List <Position>? whitePositions = new List<Position>();
+        public List <Position>? blackPositions = new List<Position>();
 
         public Chessboard()
         {
@@ -60,6 +60,12 @@ namespace chess137.Chess
             whiteMove = true;
         }
 
+        public Chessboard(Chessboard ch)
+        {
+            this.blackFigures = new List<Figure>(ch.blackFigures);
+            this.whiteFigures = new List<Figure>(ch.whiteFigures);
+        }
+
         public Position getKingPosition(bool isWhite) {
 
             if (isWhite) return whiteFigures.Find(x => x.getName() == Const.kingName)!.getPosition();
@@ -69,8 +75,8 @@ namespace chess137.Chess
 
         private void clearPositions()
         {
-            whitePositions!.Clear();
-            blackPositions!.Clear();
+            if(whitePositions != null) whitePositions!.Clear();
+            if (whitePositions != null)  blackPositions!.Clear();
         }
         
         private void setPositions()
@@ -84,6 +90,9 @@ namespace chess137.Chess
             this.move++;
             this.whiteMove = !this.whiteMove;
             clearPositions();
+            setPositions();
         }
+
+        public bool whiteTurn() { return whiteMove;  }
     }
 }
