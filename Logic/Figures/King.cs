@@ -36,14 +36,14 @@ namespace chess137.Figures
             int posX, posY;
             posX = position!.x;
             posY = position!.y;
-            if (posX - 1 >= 0 && posY - 1 >= 0) availableToMove.Add(new Position(posX - 1, posY - 1));
-            if (posX >= 0 && posY - 1 >= 0) availableToMove.Add(new Position(posX,posY - 1));
-            if (posX + 1 < Const.width && posY - 1 >= 0) availableToMove.Add (new Position(posX + 1, posY - 1));
-            if (posX + 1 < Const.width && posY >= 0) availableToMove.Add (new Position(posX + 1, posY));
-            if (posX - 1 >= 0 && posY >= 0) availableToMove.Add (new Position(posX - 1, posY));
-            if (posX - 1 >= 0 && posY + 1 < Const.height) availableToMove.Add (new Position(posX - 1, posY));
-            if (posX >= 0 && posY + 1 < Const.height) availableToMove.Add(new Position (posX, posY + 1));
-            if (posX + 1 < Const.width - 1 && posY + 1 < Const.height) availableToMove.Add(new Position(posX + 1, posY + 1));
+            if (posX - 1 >= 0 && posY - 1 >= 0)                     availableToMove.Add(new Position(posX - 1, posY - 1));
+            if (posX >= 0 && posY - 1 >= 0)                         availableToMove.Add(new Position(posX,posY - 1));
+            if (posX + 1 < Const.height && posY - 1 >= 0)           availableToMove.Add (new Position(posX + 1, posY - 1));
+            if (posX + 1 < Const.height && posY >= 0)               availableToMove.Add (new Position(posX + 1, posY));
+            if (posX - 1 >= 0 && posY >= 0)                         availableToMove.Add (new Position(posX - 1, posY));
+            if (posX - 1 >= 0 && posY + 1 < Const.width)            availableToMove.Add (new Position(posX - 1, posY));
+            if (posX >= 0 && posY + 1 < Const.width)                availableToMove.Add(new Position (posX, posY + 1));
+            if (posX + 1 < Const.height && posY + 1 < Const.width)  availableToMove.Add(new Position(posX + 1, posY + 1));
 
             return availableToMove;
         }

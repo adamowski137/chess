@@ -36,7 +36,7 @@ namespace chess137.Figures
             
             int i = 1;
 
-            while (position!.x + i < Const.width)
+            while (position!.x + i < Const.height)
             {
                 positionsAvailableToMove.Add(new Position(position.x + i, position.y));
                 i++;
@@ -54,7 +54,7 @@ namespace chess137.Figures
                 i++;
             }
             i = 1;
-            while (position.y + i < Const.height)
+            while (position.y + i < Const.width)
             { 
                 positionsAvailableToMove.Add(new Position(position.x, position.y + i));
                 i++;

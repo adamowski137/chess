@@ -21,9 +21,10 @@ namespace ChessApi.Converters
             x.Color = figure.getColor() ? "white" : "black";
             x.Name = figure.getName();
             x.AvailablePos = new List<PositionView>();
-            for (int i = 0; i < figure.positionsAvailableToMove().Count; i++)
+            if (figure.getMoves() != null)
+            for (int i = 0; i < figure.getMoves()!.Count; i++)
             {
-                x.AvailablePos.Add(getPosition(figure.positionsAvailableToMove()[i]));
+                x.AvailablePos.Add(getPosition(figure.getMoves()[i]));
             }
             return x;
         }

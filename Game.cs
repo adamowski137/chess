@@ -1,5 +1,6 @@
 ﻿using chess137.Chess;
 using chess137;
+using chess137.Figures;
 
 namespace ChessApi
 {
@@ -9,12 +10,25 @@ namespace ChessApi
 
         public static Chessboard getChessboard()
         {
-                      return chessboard!;
-        }
+            chessboard.blackFigures.ForEach(x => x.moves = x.updateMoves(chessboard));
+            chessboard.whiteFigures.ForEach(x => x.moves = x.updateMoves(chessboard));
 
-        public static void setChessboard(Chessboard board)
+            return chessboard!;
+        }
+        public static void makeMove(Figure f, Position move)
         {
-            chessboard = board;
+            if (f.getColor())
+            {
+                f.setPosition(move);
+                chessboard.blackFigures.RemoveAll(x => x.getPosition().x == move.x && x.getPosition().y == move.y);
+                chessboard.blackFigures.ForEach(x => x.moves = x.updateMoves(chessboard));
+                chessboard.whiteFigures.ForEach(x => x.moves = x.updateMoves(chessboard));
+                return;
+            }
+            f.setPosition(move);
+            chessboard.whiteFigures.RemoveAll(x => x.getPosition().x == move.x && x.getPosition().y == move.y);
+            chessboard.blackFigures.ForEach(x => x.moves = x.updateMoves(chessboard));
+            chessboard.whiteFigures.ForEach(x => x.moves = x.updateMoves(chessboard));
         }
     }
 }

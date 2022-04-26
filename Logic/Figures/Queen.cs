@@ -24,7 +24,7 @@ namespace chess137.Figures
             List<Position> availableToMove = new List<Position>();
             int i = 1;
 
-            while (position!.x + i < Const.width)
+            while (position!.x + i < Const.height)
             {
                 availableToMove.Add(new Position(position.x + i, position.y));
                 i++;
@@ -42,7 +42,7 @@ namespace chess137.Figures
                 i++;
             }
             i = 1;
-            while (position.y + i < Const.height)
+            while (position.y + i < Const.width)
             {
                 availableToMove.Add(new Position(position.x, position.y + i));
                 i++;
@@ -60,29 +60,29 @@ namespace chess137.Figures
             }
             posX = position.x;
             posY = position.y;
-            while (posX >= 0 && posY < Const.height)
+            while (posX >= 0 && posY < Const.width)
             {
                 posY++;
                 posX--;
-                if(posX >= 0 && posY < Const.height)
+                if(posX >= 0 && posY < Const.width)
                 availableToMove.Add(new Position(posX, posY));
             }
             posX = position.x;
             posY = position.y;
-            while (posX < Const.width && posY >= 0)
+            while (posX < Const.height && posY >= 0)
             {
                 posX++;
                 posY--;
-                if(posX < Const.width && posY >= 0)
+                if(posX < Const.height && posY >= 0)
                 availableToMove.Add(new Position(posX, posY));
             }
             posX = position.x;
             posY = position.y;
-            while (posX < Const.width && posY < Const.height)
+            while (posX < Const.height && posY < Const.width)
             {
                 posY++;
                 posX++;
-                if(posX < Const.width && posY < Const.height)
+                if(posX < Const.height && posY < Const.width)
                 availableToMove.Add(new Position(posX, posY));
             }
 

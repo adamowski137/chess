@@ -13,26 +13,27 @@ namespace ChessApi.Controllers
         [HttpGet]
         public ChessGame Get()
         {
-            Game.getChessboard().blackFigures.ForEach(x => x.updateMoves(Game.getChessboard()));
-            Game.getChessboard().whiteFigures.ForEach(x => x.updateMoves(Game.getChessboard()));
+            //Game.getChessboard().blackFigures.ForEach(x => x.moves  = x.updateMoves(Game.getChessboard()));
+            //Game.getChessboard().whiteFigures.ForEach(x => x.moves  = x.updateMoves(Game.getChessboard()));
             return GameConverter.getChessGame(Game.getChessboard());
         }
 
         [HttpGet("start")]
         public ChessGame StartGame()
         {
-            Game.setChessboard(new Chessboard());
             return GameConverter.getChessGame(Game.getChessboard());
         }
 
         [HttpPost("move")]
-        public ChessGame MakeMove([FromBody]Move rec)
+        public bool MakeMove([FromBody]Move rec)
         {
             Figure f;
+            Position Move = new Position(rec.MoveX, rec.MoveY);
             f = Game.getChessboard().whiteFigures.Find(x => x.getPosition().x == rec.PosX && x.getPosition().y == rec.PosY);
-            if (f == null) f = Game.getChessboard().blackFigures.Find(x => x.getPosition().x == rec.PosX && x.getPosition().y == rec.PosY);
-            Game.setChessboard(Functions.makeMove(f, new Position(rec.MoveX, rec.MoveY), Game.getChessboard()));
-            return GameConverter.getChessGame(Game.getChessboard());
+            if (f == null) return false;
+            if (f.getMoves().Find(x => x.x == Move.x && x.y == Move.y) == null) return false;
+            Game.makeMove(f, Move);
+            return true;
         }
     }
 }

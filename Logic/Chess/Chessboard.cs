@@ -81,8 +81,8 @@ namespace chess137.Chess
         
         private void setPositions()
         {
-            whiteFigures.ForEach(x => whitePositions!.AddRange(x.Positions!));
-            blackFigures.ForEach(x => blackPositions!.AddRange(x.Positions!));
+            //whiteFigures.ForEach(x => whitePositions!.AddRange(x.Positions!));
+            //blackFigures.ForEach(x => blackPositions!.AddRange(x.Positions!));
         }
 
         public void nextTurn()

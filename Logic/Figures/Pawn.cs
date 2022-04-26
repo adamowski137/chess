@@ -39,7 +39,7 @@ namespace chess137.Figures
                 {
                     positionsAvailableToMove.Add(new Position(position.x + 1, position.y));
                 }
-                if (position.y + 1 < Const.height && position.x + 1 < Const.width)
+                if (position.y + 1 < Const.width && position.x + 1 < Const.height)
                 {
                     positionsAvailableToMove.Add(new Position(position.x + 1, position.y + 1));
                 }

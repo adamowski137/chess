@@ -35,29 +35,29 @@ namespace chess137.Figures
             }
             posX = position.x;
             posY = position.y;
-            while (posX >= 0 && posY < Const.height)
+            while (posX >= 0 && posY < Const.width)
             {
                 posY++;
                 posX--;
-                if (posX >= 0 && posY < Const.height)
+                if (posX >= 0 && posY < Const.width)
                 availableToMove.Add(new Position (posX, posY));
             }
             posX = position.x;
             posY = position.y;
-            while (posX < Const.width && posY >= 0)
+            while (posX < Const.height && posY >= 0)
             {
                 posX++;
                 posY--;
-                if(posX < Const.width && posY >= 0)
+                if(posX < Const.height && posY >= 0)
                 availableToMove.Add(new Position(posX, posY));
             }
             posX = position.x;
             posY = position.y;
-            while (posX < Const.width && posY < Const.height)
+            while (posX < Const.height && posY < Const.width)
             {
                 posY++;
                 posX++;
-                if(posX < Const.width && posY < Const.height)
+                if(posX < Const.height && posY < Const.width)
                 availableToMove.Add(new Position(posX, posY));
             }
             return availableToMove;

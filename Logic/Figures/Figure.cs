@@ -15,9 +15,8 @@ namespace chess137.Figures
         protected int value;
         protected string? name;
         protected int Id;
-        protected List<Position> moves;
+        public List<Position> moves;
 
-        public List<Position>? Positions;
         public Position getPosition()
         {
             return position!;
@@ -51,10 +50,12 @@ namespace chess137.Figures
 
         public virtual List<Position> positionsAvailableToMove() { return null; }
         public List<Position> getMoves() { return moves; }
-        public void updateMoves(Chessboard chessboard)
+        public List <Position> updateMoves(Chessboard chessboard)
         {
-            moves = Functions.removeOccupiedMoves(moves, this, chessboard.whiteFigures, chessboard.blackFigures);
-            moves = Functions.removeIllegalMoves(isWhite, chessboard, positionsAvailableToMove(), this);
+            moves = positionsAvailableToMove();
+            moves = Functions.removeOccupiedMoves(this, chessboard);
+           // moves = Functions.removeIllegalMoves(isWhite, chessboard, positionsAvailableToMove(), this);
+           return moves;
         }
     }
 }

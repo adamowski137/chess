@@ -25,14 +25,15 @@ namespace chess137.Figures
             int posX, posY;
             posX = position!.x;
             posY = position!.y;
-            if (posY + 2 < Const.height && posX + 1 < Const.width) availableToMove.Add(new Position(posX + 1, posY + 2));
-            if (posY + 2 < Const.height && posX - 1 >= 0) availableToMove.Add(new Position(posX - 1, posY + 2));
-            if (posY + 1 < Const.height && posX + 2 < Const.width) availableToMove.Add(new Position(posX + 2, posY + 1));
-            if (posY + 1 < Const.height && posX - 2 >= 0) availableToMove.Add(new Position(posX - 2, posY + 1));
-            if (posY - 1 >= 0 && posX - 2 >= 0) availableToMove.Add(new Position(posX - 2, posY - 1));
-            if (posY - 1 >= 0 && posX + 2 < Const.width) availableToMove.Add(new Position(posX + 2, posY - 1));
-            if (posY - 2 >= 0 && posX + 1 < Const.width) availableToMove.Add(new Position(posX + 1, posY - 2));
-            if (posY - 2 >= 0 && posX - 1 >= 0) availableToMove.Add(new Position(posX - 1, posY - 2));
+            if (posY + 2 < Const.width && posX + 1 < Const.height)  availableToMove.Add(new Position(posX + 1, posY + 2));
+            if (posY + 2 < Const.width && posX - 1 >= 0)            availableToMove.Add(new Position(posX - 1, posY + 2));
+            if (posY + 1 < Const.width && posX + 2 < Const.height)  availableToMove.Add(new Position(posX + 2, posY + 1));
+            if (posY + 1 < Const.width && posX - 2 >= 0)            availableToMove.Add(new Position(posX - 2, posY + 1));
+            if (posY - 1 >= 0 && posX - 2 >= 0)                     availableToMove.Add(new Position(posX - 2, posY - 1));
+            if (posY - 1 >= 0 && posX + 2 < Const.height)           availableToMove.Add(new Position(posX + 2, posY - 1));
+            if (posY - 2 >= 0 && posX + 1 < Const.height)           availableToMove.Add(new Position(posX + 1, posY - 2));
+            if (posY - 2 >= 0 && posX - 1 >= 0)                     availableToMove.Add(new Position(posX - 1, posY - 2));
+            
             return availableToMove;
         }
     }
