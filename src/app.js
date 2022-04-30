@@ -47,11 +47,8 @@ function StartGame(){
           getData()
         }, [])
         if (Org.figures !== undefined){
-            console.log(figures[0].available_moves)
             figures = [];
-            // console.log(Org.figures);
             Array(Org.figures)[0].forEach(x => figures.push(new figure(x.name, x.color, [x.xPos, x.yPos],toArray(x.availablePos))));
-            console.log(figures[0].available_moves)
             return (figures);
             
         }
@@ -65,17 +62,18 @@ function sendMove(pos, move){
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            figureX: pos[0],
-            figureY: pos[1],
+            posX: pos[0],
+            posY: pos[1],
             moveX: move[0],
             moveY: move[1]
         })
     };
     const getData = () => {
-        fetch('http://localhost:4000/api/declaration_add/', requestOptions)
+        fetch('http://localhost:5257/game/move', requestOptions)
             .then(response => response.json())
     }
-    getData()
+    console.log(getData());
+    return true;
 }
 
 
