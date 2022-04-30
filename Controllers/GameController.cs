@@ -15,6 +15,7 @@ namespace ChessApi.Controllers
         {
             //Game.getChessboard().blackFigures.ForEach(x => x.moves  = x.updateMoves(Game.getChessboard()));
             //Game.getChessboard().whiteFigures.ForEach(x => x.moves  = x.updateMoves(Game.getChessboard()));
+            int i = Game.getChessboard().whiteFigures.Count;
             return GameConverter.getChessGame(Game.getChessboard());
         }
 
@@ -30,6 +31,8 @@ namespace ChessApi.Controllers
             Figure f;
             Position Move = new Position(rec.MoveX, rec.MoveY);
             f = Game.getChessboard().whiteFigures.Find(x => x.getPosition().x == rec.PosX && x.getPosition().y == rec.PosY);
+            if (f == null)
+            f = Game.getChessboard().blackFigures.Find(x => x.getPosition().x == rec.PosX && x.getPosition().y == rec.PosY);
             if (f == null) return false;
             if (f.getMoves().Find(x => x.x == Move.x && x.y == Move.y) == null) return false;
             Game.makeMove(f, Move);

@@ -40,6 +40,9 @@ namespace ChessApi.Converters
             for (int i = 0; i < chessboard.blackFigures.Count; i++)
             {
                 chess.Figures.Add(getFigure(chessboard.blackFigures[i]));
+            }
+            for (int i = 0; i < chessboard.whiteFigures.Count; i++)
+            {
                 chess.Figures.Add(getFigure(chessboard.whiteFigures[i]));
             }
             return chess;

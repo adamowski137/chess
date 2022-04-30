@@ -257,66 +257,55 @@ namespace chess137
                 {
                     for (int i = 0; i < chessboard.whiteFigures.Count; i++)
                     {
-                        Position pos = figure.getMoves().Find(x => chessboard.whiteFigures[i].getPosition().x == x.x && chessboard.whiteFigures[i].getPosition().y == x.y);
+                        Position pos = figure.getMoves().Find(x => x.x == chessboard.whiteFigures[i].getPosition().x && x.y == chessboard.whiteFigures[i].getPosition().y);
                         if (pos == null) continue;
-
+                        figure.getMoves().Remove(pos);
+                     }
+                    List<Position> toRemove = new List<Position>();
+                    for (int i = 0; i < figure.getMoves().Count; i++)
+                    {
+                        if (figure.getMoves()[i].y == figure.getPosition().y)
+                        {
+                            Figure f = chessboard.blackFigures.Find(x => x.getPosition().x == figure.getMoves()[i].x && x.getPosition().y == figure.getMoves()[i].y);
+                            if (f == null) continue;
+                            toRemove.Add(f.getPosition());
+                            continue;
+                        }
+                        Figure f2 = chessboard.blackFigures.Find(x => x.getPosition().x == figure.getMoves()[i].x && x.getPosition().y == figure.getMoves()[i].y);
+                        if (f2 == null) toRemove.Add(figure.getMoves()[i]);
+                    }
+                    toRemove.ForEach(x => figure.getMoves().RemoveAll(y => x.x == y.x && x.y == y.y));
+                }
+                if (!figure.getColor())
+                {
+                    for (int i = 0; i < chessboard.blackFigures.Count; i++)
+                    {
+                        Position pos = figure.getMoves().Find(x => x.x == chessboard.blackFigures[i].getPosition().x && x.y == chessboard.blackFigures[i].getPosition().y);
+                        if (pos == null) continue;
                         figure.getMoves().Remove(pos);
                     }
                     List<Position> toRemove = new List<Position>();
                     for (int i = 0; i < figure.getMoves().Count; i++)
                     {
-                        Figure f = chessboard.blackFigures.Find(x => x.getPosition().x == figure.getMoves()[i].x && x.getPosition().y == figure.getMoves()[i].y);
-                        if (f == null)
+                        if (figure.getMoves()[i].y == figure.getPosition().y)
                         {
-                            if (figure.getMoves()[i].y == figure.getPosition().y + 1 || figure.getMoves()[i].y == figure.getPosition().y - 1)
-                                toRemove.Add(figure.getMoves()[i]);
+                            Figure f = chessboard.whiteFigures.Find(x => x.getPosition().x == figure.getMoves()[i].x && x.getPosition().y == figure.getMoves()[i].y);
+                            if (f == null) continue;
+                            toRemove.Add(f.getPosition());
+                            if (f.getPosition().x == figure.getPosition().x - 1)
+                            {
+                                Position pos = new Position(figure.getPosition().y, figure.getPosition().x - 2);
+                                toRemove.Add(pos);
+                            }
                             continue;
                         }
-                        else if (f.getPosition().x == figure.getPosition().x + 2)
-                        {
-                            toRemove.Add(f.getPosition());
-                        }
-                        if (f.getPosition().x == figure.getPosition().x + 1)
-                        {
-                            toRemove.Add(f.getPosition());
-                            
-                        }
-
+                        Figure f2 = chessboard.whiteFigures.Find(x => x.getPosition().x == figure.getMoves()[i].x && x.getPosition().y == figure.getMoves()[i].y);
+                        if (f2 == null) toRemove.Add(figure.getMoves()[i]);
                     }
-                    figure.getMoves().RemoveAll(x => toRemove.Find(y => y.x == x.x && y.y == x.y) != null);
-                    return figure.getMoves();
+                    toRemove.ForEach(x => figure.getMoves().RemoveAll(y => x.x == y.x && x.y == y.y));
                 }
+                return figure.getMoves();
 
-                    for (int i = 0; i < chessboard.blackFigures.Count; i++)
-                    {
-                        Position pos = figure.getMoves().Find(x => chessboard.blackFigures[i].getPosition().x == x.x && chessboard.blackFigures[i].getPosition().y == x.y);
-                        if (pos == null) continue;
-
-                        figure.getMoves().Remove(pos);
-                    }
-                    List<Position> Remove = new List<Position>();
-                    for (int i = 0; i < figure.getMoves().Count; i++)
-                    {
-                        Figure f = chessboard.whiteFigures.Find(x => x.getPosition().x == figure.getMoves()[i].x && x.getPosition().y == figure.getMoves()[i].y);
-                        if (f == null)
-                        {
-                            if (figure.getMoves()[i].y == figure.getPosition().y + 1 || figure.getMoves()[i].y == figure.getPosition().y - 1)
-                                Remove.Add(figure.getMoves()[i]);
-                            continue;
-                        }
-                        else if (f.getPosition().x == figure.getPosition().x - 2)
-                        {
-                            Remove.Add(f.getPosition());
-                        }
-                        else if (f.getPosition().x == figure.getPosition().x - 1)
-                        {
-                            Remove.Add(f.getPosition());
-                            Remove.Add(new Position(f.getPosition().x - 1, figure.getPosition().y));
-                        }
-
-                    }
-                    figure.getMoves().RemoveAll(x => Remove.Find(y => y.x == x.x && y.y == x.y) != null);
-                    return figure.getMoves();
             }
 
 
@@ -656,13 +645,6 @@ namespace chess137
             return moves;
         }
         */
-        public static Chessboard makeMove(Figure figure, Position position, Chessboard chessboard)
-        {
-            chessboard = alternativeChessboard(figure, position, chessboard);
-            chessboard.nextTurn();
-            return chessboard;
-        }
-    
 
         public static void promotePawn(Pawn pawn, Figure figure, Chessboard chessboard)
         {
