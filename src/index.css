@@ -49,7 +49,7 @@
     background-size:contain;
 }
 .selected{
-    background-color: black;
+    background-color: blue;
 }
 .black-pawn{
     background-image:url("figures/black-pawn.png");
