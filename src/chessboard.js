@@ -20,14 +20,13 @@ function Chessboard(){
         await fetch('http://localhost:5257/game')
         .then((res) => res.json())
         .then((res) => {
-            console.log(fig.figures);
             fetchFig(res)
         })
     }
     useEffect(() => {
         getData()
-        .then(setFigures(fig.figures));
-    },[getData])
+        setChessboard();
+    },[])
 
     const sendMove =  (pos, move) => {
         const requestOptions = {
@@ -41,8 +40,13 @@ function Chessboard(){
             })
         };
              fetch('http://localhost:5257/game/move', requestOptions)
-            .then(response => response.json())
-            .then(setChessboard)
+            .then((res) => res.json())
+            .then((res) => {
+                if(res !== undefined)
+                setFigures(res.figures);
+                setSelected([]);
+                setHighlighted([]);
+            })
     }
 
 

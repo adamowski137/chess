@@ -3,7 +3,7 @@ function ChessTile({figures, position, color, selected, setSelected, highlightTi
     const handleClick = (event) => {
         event.stopPropagation();
         const pos = highlighted.find(x => x.xPos === position[0] && x.yPos === position[1]);
-        if(selected !== undefined && pos != undefined){
+        if(selected !== undefined && pos !== undefined){
             sendMove(selected, position);
         }
         
