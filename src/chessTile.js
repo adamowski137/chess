@@ -1,7 +1,13 @@
 import Figure from "./figure";
-function ChessTile({figures, position, color, selected, setSelected, highlightTiles}){
+function ChessTile({figures, position, color, selected, setSelected, highlightTiles, highlighted, sendMove, getChessboard}){
     const handleClick = (event) => {
-        // event.stopPropagation();
+        event.stopPropagation();
+        const pos = highlighted.find(x => x.xPos === position[0] && x.yPos === position[1]);
+        if(selected !== undefined && pos != undefined){
+            sendMove(selected, position);
+        }
+        
+        // 
         // if(highlitedTiles.find(x => x[0] === Number(event.target.id[0]) && x[1] === Number(event.target.id[2])) !== undefined){
         //     const f = figures.find(x => x.pos === selectedPos);
         //     const anwser = sendMove(selectedPos, [Number(event.target.id[0]), Number(event.target.id[2])]);
@@ -16,15 +22,19 @@ function ChessTile({figures, position, color, selected, setSelected, highlightTi
         //     }
         // }
     } 
+    //console.log(highlighted);
     var pos;
-    if(figures !== undefined){
-        pos = figures.find(x => x.pos[0] === position[0] && x.pos[1] === position[1]);    
-    }
-    else pos = undefined;
+    var isHighlited;
     var name;
+    if(figures !== undefined){
+        pos = figures.find(x => x.xPos === position[0] && x.yPos === position[1]);    
+    }
     if (position[0] === selected[0] && position[1] === selected[1])  name = "chess-tile " + color +" selected";
     else name = "chess-tile " + color;
-    
+    if(highlighted !== undefined){
+        isHighlited = highlighted.find(x => x.xPos === position[0]&& x.yPos ===  position[1]);
+    }
+    if (isHighlited !== undefined) name = name + " highlight";
     return (<div onClick={handleClick}  id={position} className={name}><Figure figure={pos} setSelected={setSelected} highlightTiles={highlightTiles} /> </div>);
 }
 

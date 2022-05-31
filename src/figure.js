@@ -45,11 +45,10 @@ function Figure({figure, setSelected, highlightTiles}){
 }
 
 function Pawn({props, isSelected, highlightTiles}) {
-    console.log(props);
     const handleClick = (event, pos, moves) => {
         event.stopPropagation();
         isSelected(pos);
-        highlightTiles(moves)
+        highlightTiles(moves);
         // if(event.target === selectedFigure){
         //     selectedFigure = null;
         //     event.target.parentNode.style.backgroundColor="white";
@@ -77,15 +76,16 @@ function Pawn({props, isSelected, highlightTiles}) {
         // }
     }
     return(
-        <div className={"figure " +  props.color+ "-pawn"} onClick={(event) => handleClick(event, props.pos)}>
+        <div className={"figure " +  props.color+ "-pawn"} onClick={(event) => handleClick(event, [props.xPos, props.yPos], props.availablePos)}>
         </div>
     )
 }
 
 function Knight({props, isSelected, highlightTiles}) {
-    const handleClick = (event, pos) => {
+    const handleClick = (event, pos, moves) => {
         event.stopPropagation();
         isSelected(pos);
+        highlightTiles(moves);
         // event.stopPropagation();
         // if(event.target === selectedFigure){
         //     selectedFigure = null;
@@ -113,13 +113,14 @@ function Knight({props, isSelected, highlightTiles}) {
         //     selectedPos = pos;
         // }
     }
-    return (<div className={"figure " +  props.color+ "-knight"  } onClick={(event) => handleClick(event, props.pos)}></div>)
+    return (<div className={"figure " +  props.color+ "-knight"  } onClick={(event) => handleClick(event, [props.xPos, props.yPos], props.availablePos)}></div>)
 }
 
 function Rook({props, isSelected, highlightTiles}) {
-    const handleClick = (event, pos) => {
+    const handleClick = (event, pos, moves) => {
         event.stopPropagation();
         isSelected(pos);
+        highlightTiles(moves);
         // event.stopPropagation();
         // if(event.target === selectedFigure){
         //     selectedFigure = null;
@@ -147,13 +148,14 @@ function Rook({props, isSelected, highlightTiles}) {
         //     selectedPos = pos;
         // }
     }
-    return (<div className={"figure " +  props.color+ "-rook"} onClick={(event) => handleClick(event, props.pos)} ></div>)
+    return (<div className={"figure " +  props.color+ "-rook"} onClick={(event) => handleClick(event, [props.xPos, props.yPos], props.availablePos)} ></div>)
 }
 
 function Queen({props, isSelected, highlightTiles}) {
-    const handleClick = (event, pos) => {
+    const handleClick = (event, pos, moves) => {
         event.stopPropagation();
         isSelected(pos);
+        highlightTiles(moves);
         // event.stopPropagation();
         // if(event.target === selectedFigure){
         //     selectedFigure = null;
@@ -181,13 +183,14 @@ function Queen({props, isSelected, highlightTiles}) {
         //     selectedPos = pos;
         // }
     }
-    return (<div className={"figure " +  props.color+ "-queen"} onClick={(event) => handleClick(event, props.pos)} ></div>)
+    return (<div className={"figure " +  props.color+ "-queen"} onClick={(event) => handleClick(event, [props.xPos, props.yPos], props.availablePos)} ></div>)
 }
 
 function King({props, isSelected, highlightTiles}) {
-    const handleClick = (event, pos) => {
+    const handleClick = (event, pos, moves) => {
         event.stopPropagation();
         isSelected(pos);
+        highlightTiles(moves);
         // event.stopPropagation();
         // if(event.target === selectedFigure){
         //     selectedFigure = null;
@@ -215,12 +218,13 @@ function King({props, isSelected, highlightTiles}) {
         //     selectedPos = pos;
         // }
     }
-    return (<div className={"figure " +  props.color+ "-king"} onClick={(event) => handleClick(event, props.pos)} ></div>)
+    return (<div className={"figure " +  props.color+ "-king"} onClick={(event) => handleClick(event, [props.xPos, props.yPos], props.availablePos)} ></div>)
 }
 function Bishop({props, isSelected, highlightTiles}) {
-    const handleClick = (event, pos) => {
+    const handleClick = (event, pos, moves) => {
         event.stopPropagation();
         isSelected(pos);
+        highlightTiles(moves);
         // event.stopPropagation();
         // if(event.target === selectedFigure){
         //     selectedFigure = null;
@@ -248,7 +252,7 @@ function Bishop({props, isSelected, highlightTiles}) {
         //     selectedPos = pos;
         // }
     }
-    return (<div className={"figure " +  props.color+ "-bishop"} onClick={(event) => handleClick(event, props.pos)}></div>)
+    return (<div className={"figure " +  props.color+ "-bishop"} onClick={(event) => handleClick(event, [props.xPos, props.yPos], props.availablePos)}></div>)
 }
 
 

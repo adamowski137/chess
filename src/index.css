@@ -51,6 +51,9 @@
 .selected{
     background-color: blue;
 }
+.highlight{
+    background-color: yellow;
+}
 .black-pawn{
     background-image:url("figures/black-pawn.png");
 }
