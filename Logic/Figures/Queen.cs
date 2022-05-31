@@ -17,6 +17,8 @@ namespace chess137.Figures
             name = Const.queenName;
             Id = id;
             moves = positionsAvailableToMove();
+            firstMove = true;
+
         }
 
         public override List<Position> positionsAvailableToMove()
@@ -88,6 +90,13 @@ namespace chess137.Figures
 
 
             return availableToMove;
+        }
+        public override Queen copyFigure()
+        {
+            Queen copy = new Queen(this.position.x, this.position.y, isWhite, Id);
+            if (getMoves() != null)
+                copy.moves = new List<Position>(getMoves());
+            return copy;
         }
     }
 }

@@ -16,6 +16,7 @@ namespace chess137.Figures
         protected string? name;
         protected int Id;
         public List<Position> moves;
+        protected bool firstMove;
 
         public Position getPosition()
         {
@@ -48,13 +49,16 @@ namespace chess137.Figures
             return Id;
         }
 
+        public void setMoved() { this.firstMove = false; }
+
+        public virtual Figure copyFigure() { return null; }
         public virtual List<Position> positionsAvailableToMove() { return null; }
         public List<Position> getMoves() { return moves; }
         public List <Position> updateMoves(Chessboard chessboard)
         {
             moves = positionsAvailableToMove();
             moves = Functions.removeOccupiedMoves(this, chessboard);
-           // moves = Functions.removeIllegalMoves(isWhite, chessboard, positionsAvailableToMove(), this);
+            moves = Functions.removeIllegalMoves(this, chessboard);
            return moves;
         }
     }

@@ -9,29 +9,24 @@ namespace chess137.Figures
 {
     internal class Pawn : Figure
     {
-        private bool firstMove;
         public Pawn(int posX, int posY, bool isW, int id)
         {
             position = new Position(posX, posY);
-            firstMove = true;
             isWhite = isW;
             value = 1;
             name = Const.pawnName;
             Id = id;
             moves = positionsAvailableToMove();
+            firstMove = true;
         }
 
-        public bool isFirstMove()
-        {
-            return firstMove;
-        }
 
-       public override List<Position> positionsAvailableToMove()
+        public override List<Position> positionsAvailableToMove()
         {
             List<Position> positionsAvailableToMove = new List<Position>();
             if (isWhite)
             {
-                if (isFirstMove())
+                if (firstMove)
                 {
                     positionsAvailableToMove.Add(new Position(position!.x + 2, position.y));
                 }
@@ -51,7 +46,7 @@ namespace chess137.Figures
 
             else
             {
-                if (isFirstMove())
+                if (firstMove)
                 {
                     positionsAvailableToMove.Add(new Position(position!.x - 2, position.y));
                 }
@@ -69,6 +64,13 @@ namespace chess137.Figures
                 }
             }
             return positionsAvailableToMove;
+        }
+        public override Pawn copyFigure()
+        {
+            Pawn copy = new Pawn(this.position.x, this.position.y, isWhite, Id);
+            if (getMoves() != null)
+                copy.moves = new List<Position>(getMoves());
+            return copy;
         }
     }
 }

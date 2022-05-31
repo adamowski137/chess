@@ -19,6 +19,7 @@ namespace chess137.Figures
             name = Const.bishopName;
             Id = id;
             moves = positionsAvailableToMove();
+            firstMove = true;
         }
         public override List<Position> positionsAvailableToMove()
         {
@@ -62,7 +63,13 @@ namespace chess137.Figures
             }
             return availableToMove;
         }
-
+        public override Bishop copyFigure()
+        {
+            Bishop copy = new Bishop(this.position.x, this.position.y, isWhite, Id);
+            if (getMoves() != null)
+            copy.moves = new List<Position>(getMoves());
+            return copy;
+        }
 
     }
 }

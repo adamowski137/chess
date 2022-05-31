@@ -19,6 +19,8 @@ namespace chess137.Figures
             ableTocastle = true;
             Id = id;
             moves = positionsAvailableToMove();
+            firstMove = true;
+
         }
         public void setUnableToCastle()
         {
@@ -61,6 +63,13 @@ namespace chess137.Figures
             }
 
             return positionsAvailableToMove;
+        }
+        public override Rook copyFigure()
+        {
+            Rook copy = new Rook(this.position.x, this.position.y, isWhite, Id);
+            if(getMoves() != null)
+            copy.moves = new List<Position>(getMoves());
+            return copy;
         }
     }
 }

@@ -15,7 +15,7 @@ namespace ChessApi.Controllers
         {
             //Game.getChessboard().blackFigures.ForEach(x => x.moves  = x.updateMoves(Game.getChessboard()));
             //Game.getChessboard().whiteFigures.ForEach(x => x.moves  = x.updateMoves(Game.getChessboard()));
-            int i = Game.getChessboard().whiteFigures.Count;
+            //int i = Game.getChessboard().whiteFigures.Count;
             return GameConverter.getChessGame(Game.getChessboard());
         }
 
@@ -28,7 +28,7 @@ namespace ChessApi.Controllers
         [HttpPost("move")]
         public bool MakeMove([FromBody]Move rec)
         {
-            Figure f;
+            Figure? f;
             Position Move = new Position(rec.MoveX, rec.MoveY);
             f = Game.getChessboard().whiteFigures.Find(x => x.getPosition().x == rec.PosX && x.getPosition().y == rec.PosY);
             if (f == null)

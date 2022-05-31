@@ -18,6 +18,8 @@ namespace chess137.Figures
             ableTocastle = false;
             Id = id;
             moves = positionsAvailableToMove();
+            firstMove = true;
+
         }
 
         public void setUnableToCastle()
@@ -41,11 +43,18 @@ namespace chess137.Figures
             if (posX + 1 < Const.height && posY - 1 >= 0)           availableToMove.Add (new Position(posX + 1, posY - 1));
             if (posX + 1 < Const.height && posY >= 0)               availableToMove.Add (new Position(posX + 1, posY));
             if (posX - 1 >= 0 && posY >= 0)                         availableToMove.Add (new Position(posX - 1, posY));
-            if (posX - 1 >= 0 && posY + 1 < Const.width)            availableToMove.Add (new Position(posX - 1, posY));
+            if (posX - 1 >= 0 && posY + 1 < Const.width)            availableToMove.Add (new Position(posX - 1, posY +  1));
             if (posX >= 0 && posY + 1 < Const.width)                availableToMove.Add(new Position (posX, posY + 1));
             if (posX + 1 < Const.height && posY + 1 < Const.width)  availableToMove.Add(new Position(posX + 1, posY + 1));
 
             return availableToMove;
+        }
+        public override King copyFigure()
+        {
+            King copy = new King(this.position.x, this.position.y, isWhite, Id);
+            if (getMoves() != null)
+                copy.moves = new List<Position>(getMoves());
+            return copy;
         }
     }
 }

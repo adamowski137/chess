@@ -34,7 +34,6 @@ namespace ChessApi.Converters
             if (chessboard == null) return null;
 
 
-
             ChessGame chess = new ChessGame();
             chess.Figures = new List<FiguresView>();
             for (int i = 0; i < chessboard.blackFigures.Count; i++)

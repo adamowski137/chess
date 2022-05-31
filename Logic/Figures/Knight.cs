@@ -18,6 +18,8 @@ namespace chess137.Figures
             name = Const.knightName;
             Id = id;
             moves = positionsAvailableToMove();
+            firstMove = true;
+
         }
         public override List<Position> positionsAvailableToMove()
         {
@@ -35,6 +37,13 @@ namespace chess137.Figures
             if (posY - 2 >= 0 && posX - 1 >= 0)                     availableToMove.Add(new Position(posX - 1, posY - 2));
             
             return availableToMove;
+        }
+        public override Knight copyFigure()
+        {
+            Knight copy = new Knight(this.position.x, this.position.y, isWhite, Id);
+            if (getMoves() != null)
+                copy.moves = new List<Position>(getMoves());
+            return copy;
         }
     }
 } 

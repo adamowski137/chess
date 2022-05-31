@@ -13,10 +13,9 @@ namespace chess137.Chess
         bool whiteMove;
         public  List<Figure> whiteFigures = new List<Figure>();
         public List<Figure> blackFigures = new List<Figure>();
-        public Figure? selectedFigure;
-
-        public List <Position>? whitePositions = new List<Position>();
-        public List <Position>? blackPositions = new List<Position>();
+        public Position? enPassant;
+        public bool whiteEnPassant;
+        public Figure? lastFigure;
 
         public Chessboard()
         {
@@ -58,40 +57,9 @@ namespace chess137.Chess
             
             move = 0;
             whiteMove = true;
+            enPassant = null;
         }
 
-        public Chessboard(Chessboard ch)
-        {
-            this.blackFigures = new List<Figure>(ch.blackFigures);
-            this.whiteFigures = new List<Figure>(ch.whiteFigures);
-        }
-
-        public Position getKingPosition(bool isWhite) {
-
-            if (isWhite) return whiteFigures.Find(x => x.getName() == Const.kingName)!.getPosition();
-
-            return blackFigures.Find(x => x.getName() == Const.kingName)!.getPosition();
-        }
-
-        private void clearPositions()
-        {
-            if(whitePositions != null) whitePositions!.Clear();
-            if (whitePositions != null)  blackPositions!.Clear();
-        }
-        
-        private void setPositions()
-        {
-            //whiteFigures.ForEach(x => whitePositions!.AddRange(x.Positions!));
-            //blackFigures.ForEach(x => blackPositions!.AddRange(x.Positions!));
-        }
-
-        public void nextTurn()
-        {
-            this.move++;
-            this.whiteMove = !this.whiteMove;
-            clearPositions();
-            setPositions();
-        }
 
         public bool whiteTurn() { return whiteMove;  }
     }
