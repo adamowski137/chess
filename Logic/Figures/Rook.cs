@@ -67,8 +67,12 @@ namespace chess137.Figures
         public override Rook copyFigure()
         {
             Rook copy = new Rook(this.position.x, this.position.y, isWhite, Id);
-            if(getMoves() != null)
-            copy.moves = new List<Position>(getMoves());
+            if (getMoves() != null)
+            {
+                copy.moves = new List<Position>();
+                getMoves().ForEach(x => copy.moves.Add(new Position(x.x, x.y)));
+
+            }
             return copy;
         }
     }

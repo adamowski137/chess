@@ -26,17 +26,20 @@ namespace ChessApi.Controllers
         }
 
         [HttpPost("move")]
-        public bool MakeMove([FromBody]Move rec)
+        public ChessGame MakeMove([FromBody]Move rec)
         {
             Figure? f;
             Position Move = new Position(rec.MoveX, rec.MoveY);
             f = Game.getChessboard().whiteFigures.Find(x => x.getPosition().x == rec.PosX && x.getPosition().y == rec.PosY);
             if (f == null)
             f = Game.getChessboard().blackFigures.Find(x => x.getPosition().x == rec.PosX && x.getPosition().y == rec.PosY);
-            if (f == null) return false;
-            if (f.getMoves().Find(x => x.x == Move.x && x.y == Move.y) == null) return false;
+            if (f == null) return null;
+            if (f.getMoves().Find(x => x.x == Move.x && x.y == Move.y) == null) return null;
             Game.makeMove(f, Move);
-            return true;
+            return GameConverter.getChessGame(Game.getChessboard());
         }
+
+        //[HttpGet("Check")]
+        //public bool isCheck
     }
 }

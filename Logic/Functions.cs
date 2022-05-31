@@ -22,30 +22,38 @@ namespace chess137
         public static Chessboard copyChessboard(Chessboard chessboard)
         {
             Chessboard c1 = new Chessboard();
+            c1.blackFigures.Clear();
+            c1.whiteFigures.Clear();
             chessboard.whiteFigures.ForEach(x => c1.whiteFigures.Add(x.copyFigure()));
             chessboard.blackFigures.ForEach(x => c1.blackFigures.Add(x.copyFigure()));
 
             return c1;
         }
-        public static Chessboard alternativeChessboard(Figure f, Position move, Chessboard chessboard)
+        public static bool alternativeChessboard(Figure f, Position move, Chessboard chessboard)
         {
+            if (f.getName() == Const.pawnName && f.getPosition().x == 6 && f.getPosition().y == 3)
+                Console.Out.Write(10);
             Chessboard c = copyChessboard(chessboard);
+            Figure? f2 = null;
             if (f.getColor())
             {
                 c.blackFigures.RemoveAll(x => x != null && x.getPosition().x == move.x && x.getPosition().y == move.y);
-                c.whiteFigures.Find(x => x != null && x.getPosition().x == f.getPosition().x && x.getPosition().y == f.getPosition().y)!.setPosition(move);
+                f2 = c.whiteFigures.Find(x => x != null && x.getPosition().x == f.getPosition().x && x.getPosition().y == f.getPosition().y);
+                f2!.setPosition(move);
             }
              
             if (!f.getColor())
             {
                 c.whiteFigures.RemoveAll(x => x != null && x.getPosition().x == move.x && x.getPosition().y == move.y);
-                c.blackFigures.Find(x => x != null && x.getPosition().x == f.getPosition().x && x.getPosition().y == f.getPosition().y)!.setPosition(move);
+                f2 = c.blackFigures.Find(x => x != null && x.getPosition().x == f.getPosition().x && x.getPosition().y == f.getPosition().y);
+                f2!.setPosition(move);
             }
-
+            c.blackFigures.ForEach(x => x.moves = x.positionsAvailableToMove());
+            c.whiteFigures.ForEach(x => x.moves = x.positionsAvailableToMove());
             c.blackFigures.ForEach(x => x.moves = removeOccupiedMoves(x, c));
             c.whiteFigures.ForEach(x => x.moves = removeOccupiedMoves(x, c));
-            return c;
-
+            if (f2 == null) return false;
+            return isCheck(f2.getColor(), c);
         }
         public static List<Position> removeOccupiedMoves(Figure figure, Chessboard chessboard)
         {
@@ -351,27 +359,30 @@ namespace chess137
         }
   
         public static bool isCheck(bool whiteKing, Chessboard chessboard)
-        {
-            //Position? position;
-            //Figure? f;
-            //if (whiteKing)
-            //{
-            //    position = chessboard.whiteFigures.Find(x => x.getName() == Const.kingName)!.getPosition();
-            //    f = chessboard.blackFigures.Find(x => x != null && x!.getMoves() != null && x!.getMoves()!.Find(y => y!.x == position.x && y!.y == position.y) != null);
-            //    if (f != null) return true;
-            //    return false;
-            //}
-            //position = chessboard.blackFigures.Find(x => x.getName() == Const.kingName)!.getPosition();
-            //f = chessboard.whiteFigures.Find(x => x != null && x!.getMoves() != null &&  x!.getMoves()!.Find(y => y!.x == position.x && y!.y == position.y) != null);
-            //if (f == null) return false;
-            //return true;
-            return false;
+      {
+            Position? position;
+            Figure? f;
+            if (whiteKing)
+            {
+                position = chessboard.whiteFigures.Find(x => x.getName() == Const.kingName)!.getPosition();
+                f = chessboard.blackFigures.Find(x => x != null && x!.getMoves() != null && x!.getMoves()!.Find(y => y!.x == position.x && y!.y == position.y) != null);
+                if (f == null) return false;
+                return true;
+            }
+            position = chessboard.blackFigures.Find(x => x.getName() == Const.kingName)!.getPosition();
+            f = chessboard.whiteFigures.Find(x => x != null && x!.getMoves() != null &&  x!.getMoves()!.Find(y => y!.x == position.x && y!.y == position.y) != null);
+            if (f == null) return false;
+            return true;
+            
         }
 
         public static List<Position> removeIllegalMoves(Figure figure, Chessboard chessboard)
         {
             if(figure.getMoves() == null) return figure.getMoves();
-            figure.getMoves().RemoveAll(x => x != null && isCheck(figure.getColor(), alternativeChessboard(figure, x, chessboard)) == true);
+            int i = figure.getMoves().Count;
+            figure.getMoves().RemoveAll(x => x != null && alternativeChessboard(figure, x, chessboard));
+            if (i > figure.getMoves().Count)
+                i = 1;
             return figure.getMoves();
         }
         public static void promotePawn(Pawn pawn, Figure figure, Chessboard chessboard)

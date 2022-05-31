@@ -25,20 +25,20 @@ namespace ChessApi
             }
             if (f.getColor())
             {
-                f.setPosition(move);
                 if (f.getName() == Const.pawnName && Math.Abs(move.x - f.getPosition().x) == 2)
                 {
                     chessboard.enPassant = new Position(move.x - 1, move.y);
                     chessboard.whiteEnPassant = false;
                 }
                 else chessboard.enPassant = null;
-                chessboard.blackFigures.RemoveAll(x => x.getPosition().x == move.x && x.getPosition().y == move.y);
+                    chessboard.blackFigures.RemoveAll(x => x.getPosition().x == move.x && x.getPosition().y == move.y);
+                f.setPosition(move);
                 chessboard.blackFigures.ForEach(x => x.moves = x.updateMoves(chessboard));
                 chessboard.whiteFigures.ForEach(x => x.moves = x.updateMoves(chessboard));
                 chessboard.lastFigure = f;
+                chessboard.makeTurn();
                 return;
             }
-            f.setPosition(move);
             if (f.getName() == Const.pawnName && Math.Abs(move.x - f.getPosition().x) == 2)
             {
                 chessboard.enPassant = new Position(move.x + 1, move.y);
@@ -46,9 +46,11 @@ namespace ChessApi
             }
             else chessboard.enPassant = null;
             chessboard.whiteFigures.RemoveAll(x => x.getPosition().x == move.x && x.getPosition().y == move.y);
+            f.setPosition(move);
             chessboard.blackFigures.ForEach(x => x.moves = x.updateMoves(chessboard));
             chessboard.whiteFigures.ForEach(x => x.moves = x.updateMoves(chessboard));
             chessboard.lastFigure = f;
+            chessboard.makeTurn();
         }
     }
 }

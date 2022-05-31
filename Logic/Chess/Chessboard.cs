@@ -62,5 +62,6 @@ namespace chess137.Chess
 
 
         public bool whiteTurn() { return whiteMove;  }
+        public void makeTurn() { whiteMove = !whiteMove; }
     }
 }

@@ -13,7 +13,7 @@ namespace ChessApi.Converters
             x.YPos = position.y;
             return x;
         }
-        public static FiguresView getFigure(Figure figure)
+        public static FiguresView getFigure(Figure figure, bool color)
         {
             FiguresView x = new FiguresView();
             x.XPos = figure.getPosition().x;
@@ -21,7 +21,7 @@ namespace ChessApi.Converters
             x.Color = figure.getColor() ? "white" : "black";
             x.Name = figure.getName();
             x.AvailablePos = new List<PositionView>();
-            if (figure.getMoves() != null)
+            if (figure.getMoves() != null && figure.getColor() == color)
             for (int i = 0; i < figure.getMoves()!.Count; i++)
             {
                 x.AvailablePos.Add(getPosition(figure.getMoves()[i]));
@@ -38,11 +38,11 @@ namespace ChessApi.Converters
             chess.Figures = new List<FiguresView>();
             for (int i = 0; i < chessboard.blackFigures.Count; i++)
             {
-                chess.Figures.Add(getFigure(chessboard.blackFigures[i]));
+                chess.Figures.Add(getFigure(chessboard.blackFigures[i], chessboard.whiteTurn()));
             }
             for (int i = 0; i < chessboard.whiteFigures.Count; i++)
             {
-                chess.Figures.Add(getFigure(chessboard.whiteFigures[i]));
+                chess.Figures.Add(getFigure(chessboard.whiteFigures[i], chessboard.whiteTurn()));
             }
             return chess;
         }

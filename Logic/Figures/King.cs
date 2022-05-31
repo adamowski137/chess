@@ -53,7 +53,11 @@ namespace chess137.Figures
         {
             King copy = new King(this.position.x, this.position.y, isWhite, Id);
             if (getMoves() != null)
-                copy.moves = new List<Position>(getMoves());
+            {
+                copy.moves = new List<Position>();
+                getMoves().ForEach(x => copy.moves.Add(new Position(x.x, x.y)));
+
+            }
             return copy;
         }
     }

@@ -41,8 +41,11 @@ namespace chess137.Figures
         public override Knight copyFigure()
         {
             Knight copy = new Knight(this.position.x, this.position.y, isWhite, Id);
-            if (getMoves() != null)
-                copy.moves = new List<Position>(getMoves());
+            {
+                copy.moves = new List<Position>();
+                getMoves().ForEach(x => copy.moves.Add(new Position(x.x, x.y)));
+
+            }
             return copy;
         }
     }

@@ -58,7 +58,11 @@ namespace chess137.Figures
         {
             moves = positionsAvailableToMove();
             moves = Functions.removeOccupiedMoves(this, chessboard);
+            int i = 1;
+            if (moves != null) i = moves.Count;
             moves = Functions.removeIllegalMoves(this, chessboard);
+            if (i != null && moves != null && i > moves.Count)
+                i = 1;
            return moves;
         }
     }
