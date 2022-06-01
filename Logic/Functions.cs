@@ -100,7 +100,7 @@ namespace chess137
                 if (chessboard.blackFigures.Count == 0 || chessboard.whiteFigures.Count == 0 || figure.getMoves().Count == 0) return null;
                 for (int i = 0; i < chessboard.blackFigures.Count; i++)
                 {
-                    Position? pos = figure.getMoves().Find(x => chessboard.blackFigures[i].getPosition().x == x.x && chessboard.blackFigures[i].getPosition().y == x.y);
+                    Position? pos = figure.getMoves().Find(x => x != null && chessboard.blackFigures[i].getPosition().x == x.x && chessboard.blackFigures[i].getPosition().y == x.y);
                     if (pos == null) continue;
                     if (pos.x > figure.getPosition().x) figure.getMoves().RemoveAll(x => x != null && x.x > pos.x);
                     if (pos.x < figure.getPosition().x) figure.getMoves().RemoveAll(x => x != null && x.x < pos.x);

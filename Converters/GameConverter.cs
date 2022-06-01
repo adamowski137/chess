@@ -1,5 +1,6 @@
 ﻿using chess137.Chess;
 using chess137.Figures;
+using chess137;
 using System.Collections;
 
 namespace ChessApi.Converters
@@ -33,7 +34,6 @@ namespace ChessApi.Converters
         {
             if (chessboard == null) return null;
 
-
             ChessGame chess = new ChessGame();
             chess.Figures = new List<FiguresView>();
             for (int i = 0; i < chessboard.blackFigures.Count; i++)
@@ -43,6 +43,22 @@ namespace ChessApi.Converters
             for (int i = 0; i < chessboard.whiteFigures.Count; i++)
             {
                 chess.Figures.Add(getFigure(chessboard.whiteFigures[i], chessboard.whiteTurn()));
+            }
+            if (Functions.isCheck(chessboard.whiteTurn(), chessboard))
+            {
+                Position? position = new Position(-1, -1);
+                chess.additional = new AdditionalView();
+                if (chessboard.whiteTurn())
+                {
+                    position = chessboard.whiteFigures.Find(x => x.getName() == Const.kingName)!.getPosition();
+                }
+                if(!chessboard.whiteTurn())
+                {
+                    position = chessboard.blackFigures.Find(x => x.getName() == Const.kingName)!.getPosition();
+                }
+
+                chess.additional.isCheck = getPosition(position);
+                chess.additional.value = Functions.countValue(chessboard);
             }
             return chess;
         }
