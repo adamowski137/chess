@@ -1,14 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
-import Chessboard from "./chessboard";
+import Game from "./game";
 import './index.css';
 
 
 ReactDOM.render(
-    <div className="game">
-    <div className="game-board">
-        <Chessboard />
-    </div>
-    </div>,
+    <Game />,
     document.getElementById('root')
 );

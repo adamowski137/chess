@@ -1,5 +1,5 @@
 import Figure from "./figure";
-function ChessTile({figures, position, color, selected, setSelected, highlightTiles, highlighted, sendMove, getChessboard}){
+function ChessTile({figures, position, color, selected, setSelected, highlightTiles, highlighted, sendMove, isChecked}){
     const handleClick = (event) => {
         event.stopPropagation();
         const pos = highlighted.find(x => x.xPos === position[0] && x.yPos === position[1]);
@@ -35,6 +35,9 @@ function ChessTile({figures, position, color, selected, setSelected, highlightTi
         isHighlited = highlighted.find(x => x.xPos === position[0]&& x.yPos ===  position[1]);
     }
     if (isHighlited !== undefined) name = name + " highlight";
+
+    if(isHighlited === undefined && isChecked.xPos === position[0] && isChecked.yPos === position[1])
+        name = name + " checked";
     return (<div onClick={handleClick}  id={position} className={name}><Figure figure={pos} setSelected={setSelected} highlightTiles={highlightTiles} /> </div>);
 }
 

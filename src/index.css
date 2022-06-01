@@ -1,24 +1,52 @@
 .game{
-    width: 80vh;
-    height: 80vh;
-    background-color: indigo;
+    width: 90vw;
+    height: 90vh;
+    background-color: rgb(1, 205, 246);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
 }
-
-.game-board{
-    height: 75vh;
-    width: 75vh;
-    left: 3vh;
-    top: 3vh;
-    background-color: hotpink;
+.panel{
+    position: relative;
+    background-color: yellow;
+    width: 50%;
+    height: 100%;
+    justify-content: center;
+}
+.start{
+    background-color: aliceblue;
+    border-color: blue;
     position: absolute;
+    min-width: min-content;
+    width: 20%;
+    min-height: min-content;
+    height: 5%;
+    top: 94%;
+    left: 78%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.game-panel{
+    min-width: 500px;
+    min-height: 500px;
+    height: 100%;
+    width: 50%;
+    background-color: red;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+.game-board{
+    height: 90%;
+    width: 90%;
+    margin: auto;
+    position: relative;
 }
 .board-row{
-    width: 70vh;
-    height: 9vh;
+    width: auto;
+    height: auto;
     position: relative;
     margin: auto;
     flex-direction: row;
-    top: 1.5vh;
     background-color: black;
     align-self: center;
     overflow: hidden;
@@ -36,10 +64,6 @@
 .black{
     background-color: #008000;
 }
-.button{
-    width:auto;
-    height: auto;
-}
 .figure{
     height: 40px;
     width: 20px;
@@ -53,6 +77,9 @@
 }
 .highlight{
     background-color: yellow;
+}
+.checked{
+    background-color: red;
 }
 .black-pawn{
     background-image:url("figures/black-pawn.png");
