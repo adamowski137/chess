@@ -31,8 +31,6 @@ namespace chess137
         }
         public static bool alternativeChessboard(Figure f, Position move, Chessboard chessboard)
         {
-            if (f.getName() == Const.pawnName && f.getPosition().x == 6 && f.getPosition().y == 3)
-                Console.Out.Write(10);
             Chessboard c = copyChessboard(chessboard);
             Figure? f2 = null;
             if (f.getColor())

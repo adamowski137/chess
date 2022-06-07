@@ -9,29 +9,15 @@ namespace chess137.Figures
 {
     internal class King : Figure
     {
-        private bool ableTocastle;
         public King(int posX, int posY, bool isW, int id)
         {
             position = new Position(posX, posY);
             isWhite = isW;
-            name = Const.kingName;
-            ableTocastle = false;
             Id = id;
             moves = positionsAvailableToMove();
             firstMove = true;
 
         }
-
-        public void setUnableToCastle()
-        {
-            ableTocastle = false;
-        }
-
-        public bool isAbleToCastle()
-        {
-            return ableTocastle;
-        }
-
         public override List <Position> positionsAvailableToMove()
         {
             List <Position> availableToMove = new List <Position>();
