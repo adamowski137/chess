@@ -379,27 +379,147 @@ namespace chess137
         public static List<Position> removeIllegalMoves(Figure figure, Chessboard chessboard)
         {
             if(figure.getMoves() == null) return figure.getMoves();
-            int i = figure.getMoves().Count;
             figure.getMoves().RemoveAll(x => x != null && alternativeChessboard(figure, x, chessboard));
-            if (i > figure.getMoves().Count)
-                i = 1;
             return figure.getMoves();
         }
         public static void promotePawn(Pawn pawn, Figure figure, Chessboard chessboard)
         {
-            figure.setPosition(pawn.getPosition());
-            figure.setColor(pawn.getColor());
-            if (pawn.getColor())
+            if(figure.getName() == Const.bishopName)
             {
-                chessboard.whiteFigures.Remove(pawn);
-                chessboard.whiteFigures.Add(figure);
+                Bishop bishop = new Bishop(pawn.getPosition().x, pawn.getPosition().y, pawn.getColor());
+                if (pawn.getColor())
+                {
+                    chessboard.whiteFigures.Remove(pawn);
+                    chessboard.whiteFigures.Add(bishop);
+                }
+                else
+                {
+                    chessboard.blackFigures.Remove(pawn);
+                    chessboard.blackFigures.Add(bishop);
+                }
+                return;
             }
-            else
+            if (figure.getName() == Const.rookName)
             {
-                chessboard.blackFigures.Remove(pawn);
-                chessboard.blackFigures.Add(figure);
+                Rook rook = new Rook(pawn.getPosition().x, pawn.getPosition().y, pawn.getColor());
+                if (pawn.getColor())
+                {
+                    chessboard.whiteFigures.Remove(pawn);
+                    chessboard.whiteFigures.Add(rook);
+                }
+                else
+                {
+                    chessboard.whiteFigures.Remove(pawn);
+                    chessboard.whiteFigures.Add(rook);
+                }
+                return;
+            }
+            if (figure.getName() == Const.queenName)
+            {
+                Queen queen = new Queen(pawn.getPosition().x, pawn.getPosition().y, pawn.getColor());
+                if (pawn.getColor())
+                {
+                    chessboard.whiteFigures.Remove(pawn);
+                    chessboard.whiteFigures.Add(queen);
+                }
+                else
+                {
+                    chessboard.whiteFigures.Remove(pawn);
+                    chessboard.whiteFigures.Add(queen);
+                }
+                return;
+            }
+            if (figure.getName() == Const.knightName)
+            {
+                Knight knight = new Knight(pawn.getPosition().x, pawn.getPosition().y, pawn.getColor());
+                if (pawn.getColor())
+                {
+                    chessboard.whiteFigures.Remove(pawn);
+                    chessboard.whiteFigures.Add(knight);
+                }
+                else
+                {
+                    chessboard.whiteFigures.Remove(pawn);
+                    chessboard.whiteFigures.Add(knight);
+                }
+                return;
+            }
+        }
+        public static void castleMoves(Chessboard chessboard)
+        {
+            Figure? wk = chessboard.whiteFigures.Find(x => x.getName() == Const.kingName);
+            Figure? bk = chessboard.blackFigures.Find(x => x.getName() == Const.kingName);
+            Figure? shortWhiteRook = chessboard.whiteFigures.Find(x => x.getName() == Const.rookName && x.getPosition().x == 0 && x.getPosition().y == 0);
+            Figure? longWhiteRook = chessboard.whiteFigures.Find(x => x.getName() == Const.rookName && x.getPosition().x == 0 && x.getPosition().y == 7);
+            Figure? shortBlackRook = chessboard.blackFigures.Find(x => x.getName() == Const.rookName && x.getPosition().x == 7 && x.getPosition().y == 0);
+            Figure? longBlackRook = chessboard.blackFigures.Find(x => x.getName() == Const.rookName && x.getPosition().x == 7 && x.getPosition().y == 7);
+            
+            if(wk != null && wk.isFirstMove() && !isCheck(wk.getColor(), chessboard))
+            {
+                Position kingPos = new Position(0, 1);
+                Position rookPos = new Position(0, 2);
+                kingPos.whiteShortCastle = true;
+                Figure? f, f2;
+                f = chessboard.blackFigures.Find(x => x.getMoves().Find(y => (y.x == kingPos.x && y.y == kingPos.y) || (y.x == rookPos.x && y.y == rookPos.y)) != null);
+                f2 = chessboard.whiteFigures.Find(x => (x.getPosition().x == kingPos.x && x.getPosition().y == kingPos.y) || (x.getPosition().x == rookPos.x && x.getPosition().y == rookPos.y));
+                if (f == null && f2 == null) wk.getMoves().Add(kingPos);
+                kingPos = new Position(0, 5);
+                rookPos = new Position(0, 4);
+                Position? rookPass = new Position(0, 6);
+                kingPos.whiteLongCastle = true;
+                f = null;
+                f2 = null;
+                f = chessboard.blackFigures.Find(x => x.getMoves().Find(y => (y.x == kingPos.x && y.y == kingPos.y) || (y.x == rookPos.x && y.y == rookPos.y)) != null);
+                f2 = chessboard.whiteFigures.Find(x => (x.getPosition().x == kingPos.x && x.getPosition().y == kingPos.y) || (x.getPosition().x == rookPos.x && x.getPosition().y == rookPos.y) || (x.getPosition().x == rookPass.x && x.getPosition().y == rookPass.y));
+                if (f == null && f2 == null) wk.getMoves().Add(kingPos);
+            }
+            if (bk != null && bk.isFirstMove() && !isCheck(bk.getColor(), chessboard))
+            {
+                Position kingPos = new Position(7, 1);
+                Position rookPos = new Position(7, 2);
+                kingPos.blackShortCastle = true;
+                Figure? f, f2;
+                f = chessboard.whiteFigures.Find(x => x.getMoves() != null && x.getMoves().Find(y => (y.x == kingPos.x && y.y == kingPos.y) || (y.x == rookPos.x && y.y == rookPos.y)) != null);
+                f2 = chessboard.blackFigures.Find(x => (x.getPosition().x == kingPos.x && x.getPosition().y == kingPos.y) || (x.getPosition().x == rookPos.x && x.getPosition().y == rookPos.y));
+                if (f == null && f2 == null) bk.getMoves().Add(kingPos);
+                kingPos = new Position(7, 5);
+                rookPos = new Position(7, 4);
+                Position? rookPass = new Position(7, 6);
+                kingPos.blackLongCastle = true;
+                f = null;
+                f2 = null;
+                f = chessboard.whiteFigures.Find(x => x.getMoves() != null && x.getMoves().Find(y => (y.x == kingPos.x && y.y == kingPos.y) || (y.x == rookPos.x && y.y == rookPos.y)) != null);
+                f2 = chessboard.blackFigures.Find(x => (x.getPosition().x == kingPos.x && x.getPosition().y == kingPos.y) || (x.getPosition().x == rookPos.x && x.getPosition().y == rookPos.y) || (x.getPosition().x == rookPass.x && x.getPosition().y == rookPass.y));
+                if (f == null && f2 == null) bk.getMoves().Add(kingPos);
+            }
+        }
+        public static void makeCastle(Position position, Chessboard chessboard)
+        {
+            if (position == null) return;
+            if(position.blackLongCastle)
+            {
+                Figure? f = chessboard.blackFigures.Find(x => x.getName() == Const.rookName && x.getPosition().x == 7 && x.getPosition().y == 7);
+                if (f != null) f.setPosition(new Position(7, 4));
+                return;
+            }
+            if (position.blackShortCastle)
+            {
+                Figure? f = chessboard.blackFigures.Find(x => x.getName() == Const.rookName && x.getPosition().x == 7 && x.getPosition().y == 0);
+                if (f != null) f.setPosition(new Position(7, 2));
+                return;
+            }
+            if (position.whiteLongCastle)
+            {
+                Figure? f = chessboard.whiteFigures.Find(x => x.getName() == Const.rookName && x.getPosition().x == 0 && x.getPosition().y == 7);
+                if (f != null) f.setPosition(new Position(0, 4));
+                return;
+            }
+            if (position.whiteShortCastle)
+            {
+                Figure? f = chessboard.whiteFigures.Find(x => x.getName() == Const.rookName && x.getPosition().x == 0 && x.getPosition().y == 0);
+                if (f != null) f.setPosition(new Position(0, 2));
+                return;
             }
         }
     }  
-
 }

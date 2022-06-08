@@ -29,12 +29,13 @@ namespace ChessApi.Controllers
         public ChessGame MakeMove([FromBody] Move rec)
         {
             Figure? f;
-            Position Move = new Position(rec.MoveX, rec.MoveY);
+            Position? Move = new Position(rec.MoveX, rec.MoveY);
             f = Game.getChessboard().whiteFigures.Find(x => x.getPosition().x == rec.PosX && x.getPosition().y == rec.PosY);
             if (f == null)
                 f = Game.getChessboard().blackFigures.Find(x => x.getPosition().x == rec.PosX && x.getPosition().y == rec.PosY);
             if (f == null) return null;
-            if (f.getMoves().Find(x => x.x == Move.x && x.y == Move.y) == null) return null;
+            Move = f.getMoves().Find(x => x.x == Move.x && x.y == Move.y);
+            if (Move == null) return null;
             Game.makeMove(f, Move);
             return GameConverter.getChessGame(Game.getChessboard());
         }

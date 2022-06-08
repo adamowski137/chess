@@ -10,13 +10,20 @@ namespace chess137.Chess
     {
         public int x;
         public int y;
-        public bool beat;
+        public bool whiteShortCastle;
+        public bool whiteLongCastle;
+        public bool blackLongCastle;
+        public bool blackShortCastle;
 
         public Position (int _x, int _y)
         {
             x = _x;
             y = _y;
-            beat = false;
+            whiteLongCastle = false;
+            whiteShortCastle = false;
+            blackShortCastle = false;
+            blackLongCastle = false;
+
         }
     }
 }

@@ -10,13 +10,12 @@ namespace chess137.Figures
 {
     internal class Knight : Figure
     {
-        public Knight(int posX, int posY, bool isW, int id)
+        public Knight(int posX, int posY, bool isW)
         {
             position = new Position(posX, posY);
             isWhite = isW;
             value = 3;
             name = Const.knightName;
-            Id = id;
             moves = positionsAvailableToMove();
             firstMove = true;
 
@@ -40,7 +39,7 @@ namespace chess137.Figures
         }
         public override Knight copyFigure()
         {
-            Knight copy = new Knight(this.position.x, this.position.y, isWhite, Id);
+            Knight copy = new Knight(this.position.x, this.position.y, isWhite);
             {
                 copy.moves = new List<Position>();
                 getMoves().ForEach(x => copy.moves.Add(new Position(x.x, x.y)));

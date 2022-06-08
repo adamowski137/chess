@@ -11,13 +11,12 @@ namespace chess137.Figures
     class Bishop : Figure
     {
     
-        public Bishop (int x, int y, bool isW, int id)
+        public Bishop (int x, int y, bool isW)
         {
             position = new Position (x, y);
             isWhite = isW;
             value = 3;
             name = Const.bishopName;
-            Id = id;
             moves = positionsAvailableToMove();
             firstMove = true;
         }
@@ -65,7 +64,7 @@ namespace chess137.Figures
         }
         public override Bishop copyFigure()
         {
-            Bishop copy = new Bishop(this.position.x, this.position.y, isWhite, Id);
+            Bishop copy = new Bishop(this.position.x, this.position.y, isWhite);
             if (getMoves() != null)
             {
                 copy.moves = new List<Position>();

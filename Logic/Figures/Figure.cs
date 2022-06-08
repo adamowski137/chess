@@ -10,17 +10,21 @@ namespace chess137.Figures
 {
     public class Figure
     {
+        protected bool ableTocastle;
         protected Position? position;
         protected bool isWhite;
         protected int value;
         protected string? name;
-        protected int Id;
         public List<Position> moves;
         protected bool firstMove;
 
         public Position getPosition()
         {
             return position!;
+        }
+        public bool isFirstMove()
+        {
+            return firstMove;
         }
         public bool getColor()
         {
@@ -44,11 +48,6 @@ namespace chess137.Figures
         {
             return name!;
         }
-        public int getId()
-        {
-            return Id;
-        }
-
         public void setMoved() { this.firstMove = false; }
 
         public virtual Figure copyFigure() { return null; }

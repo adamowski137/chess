@@ -9,13 +9,12 @@ namespace chess137.Figures
 {
     internal class Queen : Figure
     {
-        public Queen(int posX, int posY, bool isW, int id)
+        public Queen(int posX, int posY, bool isW)
         {
             position = new Position(posX, posY);
             isWhite = isW;
             value = 9;
             name = Const.queenName;
-            Id = id;
             moves = positionsAvailableToMove();
             firstMove = true;
 
@@ -93,7 +92,7 @@ namespace chess137.Figures
         }
         public override Queen copyFigure()
         {
-            Queen copy = new Queen(this.position.x, this.position.y, isWhite, Id);
+            Queen copy = new Queen(this.position.x, this.position.y, isWhite);
             if (getMoves() != null)
             {
                 copy.moves = new List<Position>();

@@ -44,10 +44,12 @@ namespace ChessApi.Converters
             {
                 chess.Figures.Add(getFigure(chessboard.whiteFigures[i], chessboard.whiteTurn()));
             }
+            Position? position = new Position(-1, -1);
+            chess.additional = new AdditionalView();
+            chess.additional.value = Functions.countValue(chessboard);
             if (Functions.isCheck(chessboard.whiteTurn(), chessboard))
             {
-                Position? position = new Position(-1, -1);
-                chess.additional = new AdditionalView();
+                
                 if (chessboard.whiteTurn())
                 {
                     position = chessboard.whiteFigures.Find(x => x.getName() == Const.kingName)!.getPosition();
@@ -58,7 +60,7 @@ namespace ChessApi.Converters
                 }
 
                 chess.additional.isCheck = getPosition(position);
-                chess.additional.value = Functions.countValue(chessboard);
+
             }
             return chess;
         }

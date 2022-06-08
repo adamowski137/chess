@@ -10,14 +10,13 @@ namespace chess137.Figures
     internal class Rook : Figure
     {
         private bool ableTocastle;
-        public Rook(int posX, int posY, bool isW, int id)
+        public Rook(int posX, int posY, bool isW)
         {
             position = new Position(posX, posY);
             isWhite = isW;
             value = 5;
             name = Const.rookName;
             ableTocastle = true;
-            Id = id;
             moves = positionsAvailableToMove();
             firstMove = true;
 
@@ -66,7 +65,7 @@ namespace chess137.Figures
         }
         public override Rook copyFigure()
         {
-            Rook copy = new Rook(this.position.x, this.position.y, isWhite, Id);
+            Rook copy = new Rook(this.position.x, this.position.y, isWhite);
             if (getMoves() != null)
             {
                 copy.moves = new List<Position>();

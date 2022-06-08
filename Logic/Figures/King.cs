@@ -9,14 +9,12 @@ namespace chess137.Figures
 {
     internal class King : Figure
     {
-        private bool ableTocastle;
-        public King(int posX, int posY, bool isW, int id)
+        public King(int posX, int posY, bool isW)
         {
             position = new Position(posX, posY);
             isWhite = isW;
             name = Const.kingName;
-            ableTocastle = false;
-            Id = id;
+            ableTocastle = true;
             moves = positionsAvailableToMove();
             firstMove = true;
 
@@ -51,7 +49,7 @@ namespace chess137.Figures
         }
         public override King copyFigure()
         {
-            King copy = new King(this.position.x, this.position.y, isWhite, Id);
+            King copy = new King(this.position.x, this.position.y, isWhite);
             if (getMoves() != null)
             {
                 copy.moves = new List<Position>();

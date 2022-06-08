@@ -9,13 +9,12 @@ namespace chess137.Figures
 {
     internal class Pawn : Figure
     {
-        public Pawn(int posX, int posY, bool isW, int id)
+        public Pawn(int posX, int posY, bool isW)
         {
             position = new Position(posX, posY);
             isWhite = isW;
             value = 1;
             name = Const.pawnName;
-            Id = id;
             moves = positionsAvailableToMove();
             firstMove = true;
         }
@@ -67,7 +66,7 @@ namespace chess137.Figures
         }
         public override Pawn copyFigure()
         {
-            Pawn copy = new Pawn(this.position.x, this.position.y, isWhite, Id);
+            Pawn copy = new Pawn(this.position.x, this.position.y, isWhite);
             if (getMoves() != null)
             {
                 copy.moves = new List<Position>();
