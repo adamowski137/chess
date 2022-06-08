@@ -1,5 +1,6 @@
 import Chessboard from "./game/chessboard";
 import ValueCounter from "./panel/valueCounter";
+import PromotePanel from "./game/promotePanel";
 import { useState } from "react";
 import {useEffect} from "react";
 
@@ -9,17 +10,16 @@ function Game(){
     const [highlightedTiles, setHighlighted] = useState([]);
     const [fig, fetchFig] = useState([]);
     const [checkPosition, setChecked] = useState([]);
+    const [chessValue, setValue] = useState(0);
 
     const setChessboard = async () => {
         await getData();
-        if(fig !== undefined)
+        if(fig !== undefined && fig.figures !== undefined)
         setFigures(fig.figures);
-        if(fig.additional !== null){
-            setChecked(fig.additional.isCheck);
-        }
-        else setChecked([]);
+        setChecked([]);
         setSelected([]);
         setHighlighted([]);
+        setValue(0);
 
     }
 
@@ -48,14 +48,17 @@ function Game(){
              fetch('http://localhost:5257/game/move', requestOptions)
             .then((res) => res.json())
             .then((res) => {
-                if(res !== undefined)
+                if(res !== undefined && res.figures !== undefined)
                 setFigures(res.figures);
                 if(res.additional !== null)
                 {
+                    // console.log((50 + 10*res.additional.value).toString() + "%")
+                    document.getElementById("bar").style.height = (50 + 5*res.additional.value).toString() + "%";
+                    setValue(res.additional.value);
+                    if(res.additional.isCheck !== null)
                     setChecked(res.additional.isCheck);
-                    console.log(res.additional.isCheck);
+                    else setChecked([]);
                 }
-                else setChecked([]);
                 setSelected([]);
                 setHighlighted([]);
             })
@@ -73,11 +76,12 @@ function Game(){
         <div className="game-panel">
             <div className="game-board">
                 <Chessboard figures={figures} selectFigure={selectFigure} selectedFigure={selectedFigure} highlightTiles={highlightTiles} highlightedTiles={highlightedTiles} sendMove={sendMove} setChessboard={setChessboard} checkPosition={checkPosition}/>
+                <PromotePanel selectedFigure={selectedFigure} figures={figures} move={[7,7]}/>
             </div>
         </div>
         <div className="panel">
             <button onClick={setChessboard} className="start"> Rozpocznij </button>
-            <ValueCounter value={1}/>
+            <ValueCounter value={chessValue}/>
         </div>
     </div>
     );

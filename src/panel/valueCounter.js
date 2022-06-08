@@ -1,6 +1,13 @@
 function ValueCounter({value})
 {
-    return(<div className="counter">{value}</div>)
+    return(
+        <div className="display-counter">
+            <div className="counter">
+                <div className="bar" id="bar"></div>
+            </div>
+            {value}
+        </div>
+    )
 }
 
 

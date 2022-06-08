@@ -6,6 +6,7 @@
     display: flex;
     justify-content: center;
 }
+/* player panel and utilities */
 .panel{
     position: relative;
     background-color: yellow;
@@ -13,18 +14,41 @@
     height: 100%;
     justify-content: center;
 }
+.display-counter{
+    margin-left: 1%;
+    margin-top: 5%;
+    height: 80%;
+    width: 5%;
+    font-style: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+.counter{
+    height: 90%;
+    width: 100%;
+    background-color: black;
+}
+
+.bar{
+    height: 50%;
+    width: 100%;
+    background-color: white;
+    transition: 1s;
+}
+
 .start{
     background-color: aliceblue;
     border-color: blue;
-    position: absolute;
-    min-width: min-content;
-    width: 20%;
-    min-height: min-content;
+    position: relative;
+    width: fit-content;
     height: 5%;
     top: 94%;
+    margin-left: 1%;
     left: 78%;
+    font-size: small;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+/* game board and chess pieces */
 .game-panel{
     min-width: 500px;
     min-height: 500px;
@@ -34,6 +58,22 @@
     overflow: hidden;
     display: flex;
     justify-content: center;
+}
+.promote-panel{
+
+    width: 100%;
+    height: 10%;
+    float: left;
+    background-color: black;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.promote-button{
+    width: fit-content;
+    margin: 10px;
+    position: relative;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 .game-board{
     height: 90%;
@@ -52,6 +92,7 @@
     overflow: hidden;
 }
 .chess-tile{
+    transition: 0.2s;
     position: relative;
     width: 12.5%;
     height: 9vh;
