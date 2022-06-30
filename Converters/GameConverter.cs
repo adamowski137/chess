@@ -60,6 +60,7 @@ namespace ChessApi.Converters
                 }
 
                 chess.additional.isCheck = getPosition(position);
+                chess.additional.isMate =  Functions.isMate(chessboard, chessboard.whiteTurn());
 
             }
             return chess;

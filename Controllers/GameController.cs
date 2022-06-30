@@ -39,5 +39,24 @@ namespace ChessApi.Controllers
             Game.makeMove(f, Move);
             return GameConverter.getChessGame(Game.getChessboard());
         }
+        [HttpPost("promote")]
+        public ChessGame Promote([FromBody] Move rec)
+        {
+            
+            Figure? f;
+            Position? Move = new Position(rec.MoveX, rec.MoveY);
+            f = Game.getChessboard().whiteFigures.Find(x => x.getPosition().x == rec.PosX && x.getPosition().y == rec.PosY);
+            if (f == null)
+                f = Game.getChessboard().blackFigures.Find(x => x.getPosition().x == rec.PosX && x.getPosition().y == rec.PosY);
+            if (f == null) return null;
+            Move = f.getMoves().Find(x => x.x == Move.x && x.y == Move.y);
+            if (Move == null) return null;
+            Game.makeMove(f, Move);
+            if (rec.promote == null) return null;
+            Functions.promotePawn(f, rec.promote, Game.getChessboard());
+            return GameConverter.getChessGame(Game.getChessboard());
+        }
+
+
     }
 }

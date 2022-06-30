@@ -31,8 +31,6 @@ namespace chess137
         }
         public static bool alternativeChessboard(Figure f, Position move, Chessboard chessboard)
         {
-            if (f.getName() == Const.pawnName && f.getPosition().x == 6 && f.getPosition().y == 3)
-                Console.Out.Write(10);
             Chessboard c = copyChessboard(chessboard);
             Figure? f2 = null;
             if (f.getColor())
@@ -382,9 +380,9 @@ namespace chess137
             figure.getMoves().RemoveAll(x => x != null && alternativeChessboard(figure, x, chessboard));
             return figure.getMoves();
         }
-        public static void promotePawn(Pawn pawn, Figure figure, Chessboard chessboard)
+        public static void promotePawn(Figure pawn, string figure, Chessboard chessboard)
         {
-            if(figure.getName() == Const.bishopName)
+            if(figure == Const.bishopName)
             {
                 Bishop bishop = new Bishop(pawn.getPosition().x, pawn.getPosition().y, pawn.getColor());
                 if (pawn.getColor())
@@ -399,7 +397,7 @@ namespace chess137
                 }
                 return;
             }
-            if (figure.getName() == Const.rookName)
+            if (figure == Const.rookName)
             {
                 Rook rook = new Rook(pawn.getPosition().x, pawn.getPosition().y, pawn.getColor());
                 if (pawn.getColor())
@@ -409,12 +407,12 @@ namespace chess137
                 }
                 else
                 {
-                    chessboard.whiteFigures.Remove(pawn);
-                    chessboard.whiteFigures.Add(rook);
+                    chessboard.blackFigures.Remove(pawn);
+                    chessboard.blackFigures.Add(rook);
                 }
                 return;
             }
-            if (figure.getName() == Const.queenName)
+            if (figure == Const.queenName)
             {
                 Queen queen = new Queen(pawn.getPosition().x, pawn.getPosition().y, pawn.getColor());
                 if (pawn.getColor())
@@ -424,12 +422,12 @@ namespace chess137
                 }
                 else
                 {
-                    chessboard.whiteFigures.Remove(pawn);
-                    chessboard.whiteFigures.Add(queen);
+                    chessboard.blackFigures.Remove(pawn);
+                    chessboard.blackFigures.Add(queen);
                 }
                 return;
             }
-            if (figure.getName() == Const.knightName)
+            if (figure == Const.knightName)
             {
                 Knight knight = new Knight(pawn.getPosition().x, pawn.getPosition().y, pawn.getColor());
                 if (pawn.getColor())
@@ -439,8 +437,8 @@ namespace chess137
                 }
                 else
                 {
-                    chessboard.whiteFigures.Remove(pawn);
-                    chessboard.whiteFigures.Add(knight);
+                    chessboard.blackFigures.Remove(pawn);
+                    chessboard.blackFigures.Add(knight);
                 }
                 return;
             }
@@ -520,6 +518,15 @@ namespace chess137
                 if (f != null) f.setPosition(new Position(0, 2));
                 return;
             }
+        }
+        
+        public static bool isMate(Chessboard chessboard, bool color)
+        {
+            int total = 0;
+            if (color) chessboard.whiteFigures.ForEach(x => total += x.moves.Count);
+            if (!color) chessboard.blackFigures.ForEach(x => total += x.moves.Count);
+
+            return total == 0;
         }
     }  
 }
