@@ -49,6 +49,16 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 /* game board and chess pieces */
+.game-over{
+    width: 300px;
+    height: fit-content;
+    z-index: 3;
+    background-color: aqua;
+    position: absolute;
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 100px;
+}
 .game-panel{
     min-width: 500px;
     min-height: 500px;
@@ -68,6 +78,10 @@
     position: relative;
     display: flex;
     justify-content: center;
+}
+.popup{
+    position: relative;
+    background-color: black;
 }
 .promote-button{
     width: fit-content;
