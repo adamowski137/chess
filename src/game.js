@@ -1,9 +1,10 @@
 import Chessboard from "./game/chessboard";
 import ValueCounter from "./panel/valueCounter";
-import PromotePanel from "./game/popup";
 import { useState } from "react";
 import {useEffect} from "react";
 import Popup from "./game/popup";
+import GameOver from "./panel/gameOver";
+import ColorIndicator from "./panel/colorIndicator";
 
 function Game(){
     const [figures, setFigures]= useState([]);
@@ -15,6 +16,7 @@ function Game(){
     const [chessValue, setValue] = useState(0);
     const [popup, setPopup] = useState(false);
     const [isMate, setMate] = useState(false);
+    const [isWhite, setColor] = useState(true);
     const setChessboard = async () => {
         await getData();
         if(fig !== undefined && fig.figures !== undefined)
@@ -23,11 +25,11 @@ function Game(){
         setSelected([]);
         setHighlighted([]);
         setValue(0);
-
+        setMate(false);
     }
 
     const getData = async () => {
-        await fetch('http://localhost:5257/game')
+        await fetch('http://localhost:5257/game/start')
         .then((res) => res.json())
         .then((res) => {
             fetchFig(res)
@@ -53,10 +55,6 @@ function Game(){
                 moveY: move[1],
             })
         };
-        if(popup){
-           console.log("xd");
-           return; 
-        }
         fetch('http://localhost:5257/game/move', requestOptions)
             .then((res) => res.json())
             .then((res) => {
@@ -70,20 +68,13 @@ function Game(){
                     setChecked(res.additional.isCheck);
                     else setChecked([]);
                     setMate(res.additional.isMate);
+                    setColor(res.additional.whiteTurn);
                 }
                 setSelected([]);
                 setHighlighted([]);
             })
     }
-    function GameOver({isMate}){
-        console.log(isMate);
-        if(isMate === false || isMate === undefined || isMate === null) return [];
-        else return(
-        <div className="game-over" >
-            GG
-        </div>
-            )
-    }
+
     const selectFigure = (childData) => {
         setSelected(childData);
     }
@@ -117,7 +108,8 @@ function Game(){
                     setChecked(res.additional.isCheck);
                     else setChecked([]);
                     setMate(res.additional.isMate);
-                }
+                    setColor(res.additional.whiteTurn);
+               }
                 setPopup(false);
                 setSelected([]);
                 setHighlighted([]);
@@ -149,6 +141,7 @@ function Game(){
                     setChecked(res.additional.isCheck);
                     else setChecked([]);
                     setMate(res.additional.isMate);
+                    setColor(res.additional.whiteTurn);
                 }
                 setPopup(false);
                 setSelected([]);
@@ -180,6 +173,7 @@ function Game(){
                     if(res.additional.isCheck !== null)
                     setChecked(res.additional.isCheck);
                     else setChecked([]);
+                    setColor(res.additional.whiteTurn);
                 }
                 setPopup(false);
                 setSelected([]);
@@ -212,6 +206,7 @@ function Game(){
                     setChecked(res.additional.isCheck);
                     else setChecked([]);
                     setMate(res.additional.isMate);
+                    setColor(res.additional.whiteTurn);
                 }
                 setPopup(false);
                 setSelected([]);
@@ -232,6 +227,7 @@ function Game(){
         <div className="panel">
             <button onClick={setChessboard} className="start"> Rozpocznij </button>
             <ValueCounter value={chessValue}/>
+            <ColorIndicator color={isWhite}/>
         </div>
     </div>
     );
