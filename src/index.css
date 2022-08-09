@@ -1,0 +1,187 @@
+.game{
+    width: 90vw;
+    height: 90vh;
+    background-color: rgb(1, 205, 246);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+/* player panel and utilities */
+.box {
+    width: 10%;
+    height: 10%;
+    float: right;
+    position: relative;
+    bottom: 50%;
+    margin-right: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.panel{
+    position: relative;
+    background-color: rgb(144, 143, 138);
+    width: 50%;
+    height: 100%;
+    justify-content: center;
+}
+.display-counter{
+    margin-left: 1%;
+    margin-top: 5%;
+    height: 80%;
+    width: 5%;
+    font-style: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+.counter{
+    height: 90%;
+    width: 100%;
+    background-color: black;
+}
+
+.bar{
+    height: 50%;
+    width: 100%;
+    background-color: white;
+    transition: 1s;
+}
+
+.start{
+    background-color: aliceblue;
+    border-color: blue;
+    position: relative;
+    width: fit-content;
+    height: 5%;
+    top: 94%;
+    margin-left: 1%;
+    left: 78%;
+    font-size: small;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+/* game board and chess pieces */
+.game-over{
+    width: 300px;
+    height: fit-content;
+    z-index: 3;
+    background-color: aqua;
+    position: absolute;
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 100px;
+}
+.game-panel{
+    min-width: 500px;
+    min-height: 500px;
+    height: 100%;
+    width: 50%;
+    background-color: rgb(144, 143, 138);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+.promote-panel{
+
+    width: 100%;
+    height: 10%;
+    float: left;
+    background-color: black;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.popup{
+    position: relative;
+    background-color: black;
+}
+.promote-button{
+    width: fit-content;
+    margin: 10px;
+    position: relative;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.game-board{
+    height: 90%;
+    width: 90%;
+    margin: auto;
+    position: relative;
+}
+.board-row{
+    width: auto;
+    height: auto;
+    position: relative;
+    margin: auto;
+    flex-direction: row;
+    background-color: black;
+    align-self: center;
+    overflow: hidden;
+}
+.chess-tile{
+    transition: 0.2s;
+    position: relative;
+    width: 12.5%;
+    height: 9vh;
+    flex-direction: row;
+    float: left;
+}
+.white{
+    background-color: white;
+}
+.black{
+    background-color: #008000;
+}
+.figure{
+    height: 40px;
+    width: 20px;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:contain;
+}
+.selected{
+    background-color: blue;
+}
+.highlight{
+    background-color: yellow;
+}
+.checked{
+    background-color: red;
+}
+.black-pawn{
+    background-image:url("figures/black-pawn.png");
+}
+.black-knight{
+    background-image: url("figures/black-knight.png");
+}
+.black-rook{
+    background-image: url("figures/black-rook.png");
+}
+.black-bishop{
+    background-image: url("figures/black-bishop.png");
+}
+.black-king{
+    background-image: url("figures/black-king.png");
+}
+.black-queen{
+    background-image: url("figures/black-queen.png");
+}
+
+.white-pawn{
+    background-image:url("figures/white-pawn.png");
+}
+.white-knight{
+    background-image: url("figures/white-knight.png");
+}
+.white-rook{
+    background-image: url("figures/white-rook.png");
+}
+.white-bishop{
+    background-image: url("figures/white-bishop.png");
+}
+.white-king{
+    background-image: url("figures/white-king.png");
+}
+.white-queen{
+    background-image: url("figures/white-queen.png");
+}
