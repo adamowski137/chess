@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iYhLcgD82gk1z4lOaH9SuzUmPWB6INAqVjGvcvlbg/UVHxdRxqQZwEQjpCZB+sD83NwFXpA9aCIkxK2GSNuI/g==",
+  "dgSpecHash": "KNMn0p/PPtgXumQR+eKsu67kKX5HHWJN9GfmjmOAU0aApdv0S4pyPxTocYNo2wPz9h8ZmC4LaviIy9rMfUoSwQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\adamz\\OneDrive\\Pulpit\\chess137\\ChessApi.csproj",
+  "projectFilePath": "C:\\Users\\adamz\\OneDrive\\Pulpit\\chess\\chess\\backend\\ChessApi.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

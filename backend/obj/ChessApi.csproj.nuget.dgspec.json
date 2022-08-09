@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\adamz\\OneDrive\\Pulpit\\chess137\\ChessApi.csproj": {}
+    "C:\\Users\\adamz\\OneDrive\\Pulpit\\chess\\chess\\backend\\ChessApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\adamz\\OneDrive\\Pulpit\\chess137\\ChessApi.csproj": {
+    "C:\\Users\\adamz\\OneDrive\\Pulpit\\chess\\chess\\backend\\ChessApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\adamz\\OneDrive\\Pulpit\\chess137\\ChessApi.csproj",
+        "projectUniqueName": "C:\\Users\\adamz\\OneDrive\\Pulpit\\chess\\chess\\backend\\ChessApi.csproj",
         "projectName": "ChessApi",
-        "projectPath": "C:\\Users\\adamz\\OneDrive\\Pulpit\\chess137\\ChessApi.csproj",
+        "projectPath": "C:\\Users\\adamz\\OneDrive\\Pulpit\\chess\\chess\\backend\\ChessApi.csproj",
         "packagesPath": "C:\\Users\\adamz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\adamz\\OneDrive\\Pulpit\\chess137\\obj\\",
+        "outputPath": "C:\\Users\\adamz\\OneDrive\\Pulpit\\chess\\chess\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\adamz\\AppData\\Roaming\\NuGet\\NuGet.Config",
